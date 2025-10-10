@@ -130,18 +130,6 @@ def bulid_vless_urls(a, b, c, d):
         vless_urls_771 += f'{vless_url}\n'
     if c == 'cfv.live':
         vless_urls_crv += f'{vless_url}\n'
-
-def bulid_file(m):
-    if vless_urls and m == 'w':
-        with open('docs/index.html', w, encoding='utf-8') as file:
-            for vless_url in vless_urls:
-                file.write(f'{vless_url}\n')
-            print(f'✅ 写入成功！')
-    if vless_urls and m == 'a':
-        with open('docs/index.html', a, encoding='utf-8') as file:
-            for vless_url in vless_urls:
-                file.write(f'{vless_url}\n')
-            print(f'✅ 添加成功！')
             
 if __name__ == "__main__":
     vless_urls = ''
