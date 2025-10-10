@@ -4,6 +4,42 @@ import re
 import os
 import random
 
+def get_ips(token=''):
+    update_list = [
+        {'domain': 'cf-zxs.dynv6.net', 'url': 'https://ip.164746.xyz'},
+        {'domain': 'cf-zxs.v6.army', 'url': 'https://ipdb.api.030101.xyz/?type=bestcf&country=true'},
+        {'domain': 'cf-zxs.dns.army', 'url': 'https://ip.164746.xyz/ipTop10.html'},
+        {'domain': 'cf-zxs.dns.navy', 'url': 'https://www.wetest.vip/page/cloudflare/total_v4.html'},
+        {'domain': 'cf-zxs.v6.navy', 'url': 'https://api.uouin.com/cloudflare.html'},
+        {'domain': 'ljk-clouflare.dns.army', 'url': 'https://addressesapi.090227.xyz/CloudFlareYes'},
+        {'domain': 'live-zxs.dns.army', 'url': 'https://vps789.com/openApi/cfIpApi'}
+    ]
+    ip_pattern = r'\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b'
+
+    for list in update_list:
+        try:
+            response = requests.get(list['url'], timeout=10).text
+            ip_matches = re.findall(ip_pattern, response, re.IGNORECASE)
+        except Exception as e:
+            print(f"❌ 失败: {e}")
+            continue
+        if ip_matches:
+            if not token:
+                unique_ips.update(ip_matches)
+                continue
+            try:
+                ipv4 = ip_matches[0]
+                update_url = f"http://dynv6.com/api/update?token={token}&hostname={list['domain']}&ipv4={ipv4}"
+                response = requests.get(update_url, timeout=10).text.strip()
+                print(f"✅ {ipv4}@{response}@{list['domain']}")
+                bulid_vless_urls(list['domain'].split(".", 1)[0], list['domain'].split(".", 1)[1], 'cfv.live', 'LIVE_CFV_TOKEN')
+                unique_ips.update(ip_matches[1:])
+            except Exception as e:
+                unique_ips.update(ip_matches)
+                print(f"❌ 失败: {e}")
+        else:
+            print(f"❌ {list['url']}未返回IP")
+            
 def update_A(host, domain=''):
     # 基础变量，api_token使用全局变量
     domain = domain
@@ -112,39 +148,9 @@ if __name__ == "__main__":
     vless_urls = ''
     vless_urls_771 = ''
     vless_urls_crv = ''
-    update_list = [
-        {'domain': 'cf-zxs.dynv6.net', 'url': 'https://ip.164746.xyz'},
-        {'domain': 'cf-zxs.v6.army', 'url': 'https://ipdb.api.030101.xyz/?type=bestcf&country=true'},
-        {'domain': 'cf-zxs.dns.army', 'url': 'https://ip.164746.xyz/ipTop10.html'},
-        {'domain': 'cf-zxs.dns.navy', 'url': 'https://www.wetest.vip/page/cloudflare/total_v4.html'},
-        {'domain': 'cf-zxs.v6.navy', 'url': 'https://api.uouin.com/cloudflare.html'},
-        {'domain': 'ljk-clouflare.dns.army', 'url': 'https://addressesapi.090227.xyz/CloudFlareYes'},
-        {'domain': 'live-zxs.dns.army', 'url': 'https://vps789.com/openApi/cfIpApi'}
-    ]
     unique_ips = set()
-    ip_pattern = r'\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b'
-    api_token = os.getenv('DYNV6_TOKEN')
 
-    for list in update_list:
-        try:
-            response = requests.get(list['url'], timeout=10).text
-            ip_matches = re.findall(ip_pattern, response, re.IGNORECASE)
-        except Exception as e:
-            print(f"❌ 失败: {e}")
-            continue
-        if ip_matches:
-            try:
-                ipv4 = ip_matches[0]
-                update_url = f"http://dynv6.com/api/update?token={api_token}&hostname={list['domain']}&ipv4={ipv4}"
-                response = requests.get(update_url, timeout=10).text.strip()
-                print(f"✅ {ipv4}@{response}@{list['domain']}")
-                bulid_vless_urls(list['domain'].split(".", 1)[0], list['domain'].split(".", 1)[1], 'cfv.live', 'LIVE_CFV_TOKEN')
-                unique_ips.update(ip_matches[1:])
-            except Exception as e:
-                unique_ips.update(ip_matches)
-                print(f"❌ 失败: {e}")
-        else:
-            print(f"❌ {list['url']}未返回IP")
+    get_ips(os.getenv('DYNV6_TOKEN'))
 
     if unique_ips:
         update_A('dynv6', 'cf-zxs.dns.army')
@@ -154,10 +160,12 @@ if __name__ == "__main__":
         with open('docs/index.html', 'w', encoding='utf-8') as file:
             file.write(vless_urls)
             print(f'✅ 写入index成功！')
+            
     if vless_urls_771:
         with open('docs/f_771', 'w', encoding='utf-8') as file:
             file.write(vless_urls_771)
             print(f'✅ 写入f_771成功！')
+            
     if vless_urls_crv:
         with open('docs/f_crv', 'w', encoding='utf-8') as file:
             file.write(vless_urls_crv)
