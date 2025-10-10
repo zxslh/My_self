@@ -4,29 +4,27 @@ import re
 import os
 import random
 
-def update_dynv6_A(zone):
-    #基础变量，api_token使用全局变量
-    base_url = "https://dynv6.com/api/v2/zones"
-    domain = zone
+def update_dynv6_A(domain):
+    # 基础变量，api_token使用全局变量
+    base_url = "https://dynv6.com/api/v2/zones" # 获取全部domain数据的url
+    domain = domain
     headers = {
        "Authorization": f"Bearer {api_token}",
        "Content-Type": "application/json"
     }
-    #获取zoneID
-    try:
+    try: # 获取zoneID
         response = requests.get(base_url, headers=headers)
         response.raise_for_status()
-        all_records = response.json()
-        for record in all_records:
-            if domain == record['name']:
-                zoneID = record['id']
+        zones = response.json() # 全部domain数据
+        for zone in zones:
+            if domain == zone['name']:
+                zoneID = zone['id'] # doamin的id，后继提取domain记录使用
                 break
         if not zoneID: raise
     except Exception as e:
         print(f'❌ 获取区域信息失败：{str(e)}')
         return
-    #形成url
-    url = f"{base_url}/{zoneID}/records"
+    url = f"{base_url}/{zoneID}/records" # 形成获取domian全部记录的url
     sub_name = 11
     while sub_name <= 40:
         current_ip = unique_ips.pop()
@@ -39,32 +37,29 @@ def update_dynv6_A(zone):
         }
         response = requests.get(url, headers=headers)
         response.raise_for_status()
-        all_records = response.json()
+        all_records = response.json() # domain的全部记录
         record_found = False
         try:
             for record in all_records:
                 if record["name"] == str(sub_name) and record["type"] == "A":
-                    # 找到匹配记录，执行更新
                     renew_response = requests.patch(f"{url}/{record['id']}", headers=headers, data=json.dumps(record_data))
                     renew_response.raise_for_status()
-                    print(f"✅ 更新成功：{sub_name}.{domain} → {current_ip}")
-                    bulid_vless_urls(str(sub_name), domain, '771.qq', 'QQ_771_TOKEN')
                     record_found = True  # 标记已找到并更新
-                    break  # 找到匹配记录，退出循环，无需继续遍历
+                    break
             if not record_found:
                 create_response = requests.post(url, headers=headers, data=json.dumps(record_data))
                 create_response.raise_for_status()
-                print(f"✅ 创建成功：{sub_name}.{domain} → {current_ip}")
-                bulid_vless_urls(str(sub_name), domain, '771.qq', 'QQ_771_TOKEN')
+            print(f"✅ 成功：{sub_name}.{domain} → {current_ip}")
+            bulid_vless_urls(str(sub_name), domain, '771.qq', 'QQ_771_TOKEN')
         except Exception as e:
             print(f"❌ {sub_name}.{domain} 操作失败：{str(e)}")
         finally:
             sub_name += 1
 
 def update_dynu_A():
-    #DYNU免费用户限制4个domain，每个domain限制4个A记录
+    # DYNU免费用户限制4个domain，每个domain限制4个A记录
     api_token = os.getenv('DYNU_TOKEN')
-    base_url = f"https://api.dynu.com/v2/dns"
+    base_url = f"https://api.dynu.com/v2/dns" # 获取全部domain数据的url
     headers = {
         "accept": "application/json",
         "API-Key": api_token
@@ -72,12 +67,13 @@ def update_dynu_A():
     try:
         response = requests.get(base_url, headers=headers)
         response.raise_for_status()
-        all_domains = response.json()['domains']
+        all_domains = response.json()['domains'] # 全部domain数据
     except Exception as e:
         print(f'❌ 获取区域信息失败：{str(e)}')
         return
 
-    for domain_data in all_domains:
+    for domain_data in all_domains: # 因DYNU限制免费用户，使用全部domain更新记录
+     # if domain_data['name'] == '需要更新的domain' # 更新指定domain请删除此行开头的#并修改
         sub_name = 11
         domain = domain_data['name']
         url = f"{base_url}/{domain_data['id']}/record"
@@ -85,7 +81,7 @@ def update_dynu_A():
         try:
             response = requests.get(url, headers=headers)
             response.raise_for_status()
-            all_records = response.json()['dnsRecords']
+            all_records = response.json()['dnsRecords'] # 当前domain的全部记录
         except Exception as e:
             print(f"❌ {domain} 操作失败：{str(e)}")
             return
