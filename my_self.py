@@ -124,7 +124,7 @@ def bulid_vless_urls(a, b, c, d):
     port = random.choice(ports)
     host = f'{c}-zxs.dns.army'
     if not uuid: return
-    vless_url = f"vless://{uuid}@{a}.{b}:{port}?path=%2F%3Fed%3D2560&security=tls&encryption=none&host={host}&type=ws&sni={host}#{c[0:2]}-{b[0]}-{a}"
+    vless_url = f"vless://{uuid}@{a}.{b}:{port}?path=%2F%3Fed%3D2560&security=tls&encryption=none&host={host}&type=ws&sni={host}#{c[0:3]}-{b[0]}-{a}"
     vless_urls += f'{vless_url}\n'
     if c == '771.qq':
         vless_urls_771 += f'{vless_url}\n'
