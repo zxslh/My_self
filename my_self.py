@@ -119,7 +119,7 @@ def bulid_vless_urls(a, b, c, d):
     port = '443'
     host = f'{c}-zxs.dns.army'
     if not uuid: return
-    vless_url = f"vless://{uuid}@{a}.{b}:{port}?path=%2F%3Fed%3D2560&security=tls&encryption=none&host={host}&type=ws&sni={host}#{a}{b[0]}"
+    vless_url = f"vless://{uuid}@{a}.{b}:{port}?path=%2F%3Fed%3D2560&security=tls&encryption=none&host={host}&type=ws&sni={host}#{c[0:2]}-{b[0:]-{a}"
     vless_urls.append(vless_url)
 
 if __name__ == "__main__":
