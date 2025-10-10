@@ -82,6 +82,7 @@ def update_dynu_A():
         sub_name = 11
         domain = domain_data['name']
         url = f"{base_url}/{domain_data['id']}/record"
+        act_url = url
         try:
             response = requests.get(url, headers=headers)
             response.raise_for_status()
