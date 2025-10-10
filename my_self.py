@@ -11,7 +11,6 @@ def update_A(host, domain=''):
 
     if host == 'dynv6':
         api_token = os.getenv('DYNV6_TOKEN')
-        api_token = 'PB77bds9fd9q9Wcbb8exd8Ch8TBR74'
         base_url = 'https://dynv6.com/api/v2/zones'
         headers = {
            "Authorization": f"Bearer {api_token}",
@@ -26,7 +25,6 @@ def update_A(host, domain=''):
         r_token = 'QQ_771_TOKEN'
     elif host == 'dynu':
         api_token = os.getenv('DYNU_TOKEN')
-        api_token = 'f4YXU34YYba3WW33gX43bgUfX2gTZdf6'
         base_url = 'https://api.dynu.com/v2/dns'
         headers = {
             "accept": "application/json",
