@@ -2,6 +2,7 @@ import requests
 import json
 import re
 import os
+import random
 
 def update_dynv6_A(zone):
     #基础变量，api_token使用全局变量
@@ -115,15 +116,35 @@ def update_dynu_A():
 
 def bulid_vless_urls(a, b, c, d):
     global vless_urls
+    global vless_urls_771
+    global vless_urls_crv
     uuid = os.getenv(d)
     port = '443'
     host = f'{c}-zxs.dns.army'
     if not uuid: return
     vless_url = f"vless://{uuid}@{a}.{b}:{port}?path=%2F%3Fed%3D2560&security=tls&encryption=none&host={host}&type=ws&sni={host}#{c[0:2]}-{b[0:]-{a}"
-    vless_urls.append(vless_url)
+    vless_urls += f'{vless_url}\n'
+    if c == '771.qq':
+        vless_urls_771 += f'{vless_url}\n'
+    if c == 'cfv.live':
+        vless_urls_crv += f'{vless_url}\n'
 
+def bulid_file(m):
+    if vless_urls and m == 'w':
+        with open('docs/index.html', w, encoding='utf-8') as file:
+            for vless_url in vless_urls:
+                file.write(f'{vless_url}\n')
+            print(f'✅ 写入成功！')
+    if vless_urls and m == 'a':
+        with open('docs/index.html', a, encoding='utf-8') as file:
+            for vless_url in vless_urls:
+                file.write(f'{vless_url}\n')
+            print(f'✅ 添加成功！')
+            
 if __name__ == "__main__":
-    vless_urls = []
+    vless_urls = ''
+    vless_urls_771 = ''
+    vless_urls_crv = ''
     update_list = [
         {'domain': 'cf-zxs.dynv6.net', 'url': 'https://ip.164746.xyz'},
         {'domain': 'cf-zxs.v6.army', 'url': 'https://ipdb.api.030101.xyz/?type=bestcf&country=true'},
@@ -159,7 +180,15 @@ if __name__ == "__main__":
         update_dynu_A()
 
     if vless_urls:
-        with open('index.html', 'w', encoding='utf-8') as file:
-            for vless_url in vless_urls:
-                file.write(f'{vless_url}\n')
-            print(f'✅ 写入成功！')
+        with open('docs/index.html', 'w', encoding='utf-8') as file:
+            file.write(vless_urls)
+            print(f'✅ 写入index成功！')
+    if vless_urls_771:
+        with open('docs/f_771', 'w', encoding='utf-8') as file:
+            file.write(vless_urls_771)
+            print(f'✅ 写入f_771成功！')
+    if vless_urls_crv:
+        with open('docs/f_crv', 'w', encoding='utf-8') as file:
+            file.write(vless_urls_crv)
+            print(f'✅ 写入f_crv成功！')
+
