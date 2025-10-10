@@ -4,109 +4,92 @@ import re
 import os
 import random
 
-def update_dynv6_A(domain):
+def update_A(host, domain=''):
     # 基础变量，api_token使用全局变量
-    base_url = "https://dynv6.com/api/v2/zones" # 获取全部domain数据的url
     domain = domain
-    headers = {
-       "Authorization": f"Bearer {api_token}",
-       "Content-Type": "application/json"
-    }
-    try: # 获取zoneID
-        response = requests.get(base_url, headers=headers)
-        response.raise_for_status()
-        zones = response.json() # 全部domain数据
-        for zone in zones:
-            if domain == zone['name']:
-                zoneID = zone['id'] # doamin的id，后继提取domain记录使用
-                break
-        if not zoneID: raise
-    except Exception as e:
-        print(f'❌ 获取区域信息失败：{str(e)}')
-        return
-    url = f"{base_url}/{zoneID}/records" # 形成获取domian全部记录的url
-    sub_name = 11
-    while sub_name <= 40:
-        current_ip = unique_ips.pop()
-        if not current_ip: return
-        record_data = {
-            "name": str(sub_name),
-            "type": "A",
-            "data": current_ip,  # 用变量暂存IP，方便后续引用
-            "ttl": 3600
-        }
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-        all_records = response.json() # domain的全部记录
-        record_found = False
-        try:
-            for record in all_records:
-                if record["name"] == str(sub_name) and record["type"] == "A":
-                    renew_response = requests.patch(f"{url}/{record['id']}", headers=headers, data=json.dumps(record_data))
-                    renew_response.raise_for_status()
-                    record_found = True  # 标记已找到并更新
-                    break
-            if not record_found:
-                create_response = requests.post(url, headers=headers, data=json.dumps(record_data))
-                create_response.raise_for_status()
-            print(f"✅ 成功：{sub_name}.{domain} → {current_ip}")
-            bulid_vless_urls(str(sub_name), domain, '771.qq', 'QQ_771_TOKEN')
-        except Exception as e:
-            print(f"❌ {sub_name}.{domain} 操作失败：{str(e)}")
-        finally:
-            sub_name += 1
+    act = 'post'
 
-def update_dynu_A():
-    # DYNU免费用户限制4个domain，每个domain限制4个A记录
-    api_token = os.getenv('DYNU_TOKEN')
-    base_url = f"https://api.dynu.com/v2/dns" # 获取全部domain数据的url
-    headers = {
-        "accept": "application/json",
-        "API-Key": api_token
-    }
+    if host == 'dynv6':
+        api_token = os.getenv('DYNV6_TOKEN')
+        api_token = 'PB77bds9fd9q9Wcbb8exd8Ch8TBR74'
+        base_url = 'https://dynv6.com/api/v2/zones'
+        headers = {
+           "Authorization": f"Bearer {api_token}",
+           "Content-Type": "application/json"
+        }
+        r_record = 'records'
+        r_limit = 41
+        r_name = 'name'
+        r_type = 'type'
+        r_data = 'data'
+        r_vless = '771.qq'
+        r_token = 'QQ_771_TOKEN'
+    elif host == 'dynu':
+        api_token = os.getenv('DYNU_TOKEN')
+        api_token = 'f4YXU34YYba3WW33gX43bgUfX2gTZdf6'
+        base_url = 'https://api.dynu.com/v2/dns'
+        headers = {
+            "accept": "application/json",
+            "API-Key": api_token
+        }
+        r_record = 'record'
+        r_limit = 15
+        r_name = 'nodeName'
+        r_type = 'recordType'
+        r_data = 'ipv4Address'
+        r_vless = 'cfv.live'
+        r_token = 'LIVE_CFV_TOKEN'
+    else:
+        return
+
     try:
         response = requests.get(base_url, headers=headers)
         response.raise_for_status()
-        all_domains = response.json()['domains'] # 全部domain数据
+        all_domains = response.json()
+        if isinstance(all_domains, dict): all_domains = all_domains['domains']
     except Exception as e:
         print(f'❌ 获取区域信息失败：{str(e)}')
         return
 
-    for domain_data in all_domains: # 因DYNU限制免费用户，使用全部domain更新记录
-     # if domain_data['name'] == '需要更新的domain' # 更新指定domain请删除此行开头的#并修改
+    for domain_data in all_domains:
+        if domain and domain != domain_data['name']: continue
+        zoneID = domain_data['id']
+        name = domain_data['name']
         sub_name = 11
-        domain = domain_data['name']
-        url = f"{base_url}/{domain_data['id']}/record"
+        url = f"{base_url}/{zoneID}/{r_record}"
         act_url = url
         try:
             response = requests.get(url, headers=headers)
             response.raise_for_status()
-            all_records = response.json()['dnsRecords'] # 当前domain的全部记录
+            all_records = response.json()
+            if isinstance(all_records, dict): all_records = all_records['dnsRecords']
         except Exception as e:
-            print(f"❌ {domain} 操作失败：{str(e)}")
+            print(f"❌ {name} 操作失败：{str(e)}")
             return
-        while sub_name < 15:
+
+        while sub_name < r_limit:
             current_ip = unique_ips.pop()
             if not current_ip: return
+
             record_data = {
-                "nodeName": str(sub_name),
-                "recordType": "A",
-                "ipv4Address": current_ip,
+                r_name: str(sub_name),
+                r_type: "A",
+                r_data: current_ip,  # 用变量暂存IP，方便后续引用
                 "ttl": 3600,
-                "state": True,
-                "group": ""
             }
-            try: 
+
+            try:
                 for record in all_records:
-                    if record["nodeName"] == str(sub_name) and record["recordType"] == "A":
-                        act_url = f"{url}/{record['id']}"                
-                        break                       
-                update_response = requests.post(act_url, headers=headers, data=json.dumps(record_data))
-                update_response.raise_for_status()  # 捕获创建请求的错误
-                bulid_vless_urls(str(sub_name), domain, 'cfv.live', 'LIVE_CFV_TOKEN')
-                print(f"✅ 成功：{sub_name}.{domain} → {current_ip}")
+                    if record[r_name] == str(sub_name) and record[r_type] == "A":
+                        act_url = f"{url}/{record['id']}"
+                        if host == 'dynv6': act = 'patch'
+                        break
+                update_response = getattr(requests, act)(act_url, headers=headers, data=json.dumps(record_data))
+                update_response.raise_for_status()
+                print(f"✅ 成功：{sub_name}.{name} → {current_ip}")
+                bulid_vless_urls(str(sub_name), name, r_vless, r_token)
             except Exception as e:
-                print(f"❌ {sub_name}.{domain} 操作失败：{str(e)}")
+                print(f"❌ {sub_name}.{name} 操作失败：{str(e)}")
             finally:
                 sub_name += 1
 
@@ -148,22 +131,26 @@ if __name__ == "__main__":
         try:
             response = requests.get(list['url'], timeout=10).text
             ip_matches = re.findall(ip_pattern, response, re.IGNORECASE)
-            if ip_matches:
-                unique_ips.update(ip_matches[1:])
+         except Exception as e:
+            print(f"❌ 失败: {e}")
+            continue
+        if ip_matches:
+            try:
                 ipv4 = ip_matches[0]
                 update_url = f"http://dynv6.com/api/update?token={api_token}&hostname={list['domain']}&ipv4={ipv4}"
                 response = requests.get(update_url, timeout=10).text.strip()
                 print(f"✅ {ipv4}@{response}@{list['domain']}")
                 bulid_vless_urls(list['domain'].split(".", 1)[0], list['domain'].split(".", 1)[1], 'cfv.live', 'LIVE_CFV_TOKEN')
-            else:
-                print(f"❌ {list['url']}未返回IP")
-        except Exception as e:
-            print(f"❌ 失败: {e}")
-            continue
+                unique_ips.update(ip_matches[1:])
+            except Exception as e:
+                unique_ips.update(ip_matches)
+                print(f"❌ 失败: {e}")
+        else:
+            print(f"❌ {list['url']}未返回IP")
 
     if unique_ips:
-        update_dynv6_A('cf-zxs.dns.army')
-        update_dynu_A()
+        update_A('dynv6', 'cf-zxs.dns.army')
+        update_A('dynu')
 
     if vless_urls:
         with open('docs/index.html', 'w', encoding='utf-8') as file:
