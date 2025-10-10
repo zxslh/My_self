@@ -29,19 +29,19 @@ def update_dynv6_A(zone):
     url = f"{base_url}/{zoneID}/records"
     sub_name = 11
     while sub_name <= 40:
+        current_ip = unique_ips.pop()
+        if not current_ip: return
+        record_data = {
+            "name": str(sub_name),
+            "type": "A",
+            "data": current_ip,  # 用变量暂存IP，方便后续引用
+            "ttl": 3600
+        }
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
+        all_records = response.json()
+        record_found = False
         try:
-            current_ip = unique_ips.pop()
-            if not current_ip: return
-            record_data = {
-                "name": str(sub_name),
-                "type": "A",
-                "data": current_ip,  # 用变量暂存IP，方便后续引用
-                "ttl": 3600
-            }
-            response = requests.get(url, headers=headers)
-            response.raise_for_status()
-            all_records = response.json()
-            record_found = False
             for record in all_records:
                 if record["name"] == str(sub_name) and record["type"] == "A":
                     # 找到匹配记录，执行更新
@@ -49,7 +49,6 @@ def update_dynv6_A(zone):
                     renew_response.raise_for_status()
                     print(f"✅ 更新成功：{sub_name}.{domain} → {current_ip}")
                     bulid_vless_urls(str(sub_name), domain, '771.qq', 'QQ_771_TOKEN')
-                    sub_name += 1
                     record_found = True  # 标记已找到并更新
                     break  # 找到匹配记录，退出循环，无需继续遍历
             if not record_found:
@@ -57,10 +56,10 @@ def update_dynv6_A(zone):
                 create_response.raise_for_status()
                 print(f"✅ 创建成功：{sub_name}.{domain} → {current_ip}")
                 bulid_vless_urls(str(sub_name), domain, '771.qq', 'QQ_771_TOKEN')
-                sub_name += 1  # 创建成功后，sub_name递增
         except Exception as e:
             print(f"❌ {sub_name}.{domain} 操作失败：{str(e)}")
-            continue
+        finally:
+            sub_name += 1
 
 def update_dynu_A():
     #DYNU免费用户限制4个domain，每个domain限制4个A记录
