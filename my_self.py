@@ -120,6 +120,7 @@ def bulid_vless_urls(a, b, c, d):
     global vless_urls_crv
     ports = ['443','2053','2083','2087','2096','8443']
     uuid = os.getenv(d)
+    if not uuid: return
     port = random.choice(ports)
     host = f'{c}-zxs.dns.army'
     if not uuid: return
