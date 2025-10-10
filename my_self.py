@@ -129,7 +129,7 @@ if __name__ == "__main__":
         try:
             response = requests.get(list['url'], timeout=10).text
             ip_matches = re.findall(ip_pattern, response, re.IGNORECASE)
-         except Exception as e:
+        except Exception as e:
             print(f"❌ 失败: {e}")
             continue
         if ip_matches:
