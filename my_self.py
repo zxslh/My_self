@@ -28,7 +28,7 @@ def update_dynv6_A(zone):
     #形成url
     url = f"{base_url}/{zoneID}/records"
     sub_name = 11
-    while sub_name < 38:
+    while sub_name <= 40:
         try:
             current_ip = unique_ips.pop()
             if not current_ip: return
@@ -158,7 +158,7 @@ if __name__ == "__main__":
                 update_url = f"http://dynv6.com/api/update?token={api_token}&hostname={list['domain']}&ipv4={ipv4}"
                 response = requests.get(update_url, timeout=10).text.strip()
                 print(f"✅ {ipv4}@{response}@{list['domain']}")
-                bulid_vless_urls(list['domain'].split(".", 1)[0], list['domain'].split(".", 1)[1], '771.qq', 'QQ_771_TOKEN')
+                bulid_vless_urls(list['domain'].split(".", 1)[0], list['domain'].split(".", 1)[1], 'cfv.live', 'LIVE_CFV_TOKEN')
             else:
                 print(f"❌ {list['url']}未返回IP")
         except Exception as e:
