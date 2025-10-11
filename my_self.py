@@ -45,7 +45,7 @@ def get_ips(worker='', worker_token=''):
         else:
             print(f"❌ {list['url']}未返回IP")
             
-def update_A(host, host_domain, host_token, worker, worker_token, node_num):
+def update_A(host, host_domain, host_token, worker, worker_token):
 
     act = 'post'
 
@@ -147,13 +147,14 @@ if __name__ == "__main__":
     DYNU_TOKEN = os.getenv('DYNU_TOKEN')
     QQ_771_TOKEN = os.getenv('QQ_771_TOKEN')
     LIVE_CRV_TOKEN = os.getenv('LIVE_CRV_TOKEN')
-
+    node_num = 30
+    
     get_ips('771.qq-zxs.dns.army', QQ_771_TOKEN)
  #   get_ips()
 
     if unique_ips:
-        update_A('dynv6', 'cf-zxs.dns.army', DYNV6_TOKEN, '771.qq-zxs.dns.army', QQ_771_TOKEN, 30)
-        update_A('dynu', '', DYNU_TOKEN, 'crv.live-zxs.dns.army', LIVE_CRV_TOKEN, 6)
+        update_A('dynv6', 'cf-zxs.dns.army', DYNV6_TOKEN, '771.qq-zxs.dns.army', QQ_771_TOKEN)
+        update_A('dynu', '', DYNU_TOKEN, 'crv.live-zxs.dns.army', LIVE_CRV_TOKEN)
 
     if vless_urls:
         with open('docs/index.html', 'w', encoding='utf-8') as file:
