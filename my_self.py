@@ -130,7 +130,7 @@ def update_A(host, host_domain, host_token, worker, worker_token):
 def bulid_vless_urls(a, b, c, d):
     global vless_urls
     global vless_urls_771
-    global vless_urls_crv
+    global vless_urls_cfv
     ports = ['443','2053','2083','2087','2096','8443']
     port = random.choice(ports)
   #  port = 443  # 固定端口，随机端口请注销此项
@@ -138,13 +138,13 @@ def bulid_vless_urls(a, b, c, d):
     vless_urls += f'{vless_url}\n'
     if c == '771.qq-zxs.dns.army':
         vless_urls_771 += f'{vless_url}\n'
-    if c == 'crv.live-zxs.dns.army':
-        vless_urls_crv += f'{vless_url}\n'
+    if c == 'cfv.live-zxs.dns.army':
+        vless_urls_cfv += f'{vless_url}\n'
             
 if __name__ == "__main__":
     vless_urls = ''
     vless_urls_771 = ''
-    vless_urls_crv = ''
+    vless_urls_cfv = ''
     unique_ips = set()
     DYNV6_TOKEN = os.getenv('DYNV6_TOKEN')
     DYNU_TOKEN = os.getenv('DYNU_TOKEN')
@@ -226,17 +226,17 @@ if __name__ == "__main__":
             file.write('\n'.join(vless_urls_771.split('\n')[:30]))
             print(f'✅ 写入f_771_30成功！')
             
-    if vless_urls_crv:
-        with open('docs/f_crv', 'w', encoding='utf-8') as file:
-            file.write(vless_urls_crv)
-            print(f'✅ 写入f_crv成功！')
-        with open('docs/f_crv_5', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls_crv.split('\n')[:5]))
-            print(f'✅ 写入f_crv_5成功！')
-        with open('docs/f_crv_10', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls_crv.split('\n')[:10]))
-            print(f'✅ 写入f_crv_10成功！')
-        with open('docs/f_crv_15', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls_crv.split('\n')[:15]))
-            print(f'✅ 写入f_crv_15成功！')
+    if vless_urls_cfv:
+        with open('docs/f_cfv', 'w', encoding='utf-8') as file:
+            file.write(vless_urls_cfv)
+            print(f'✅ 写入f_cfv成功！')
+        with open('docs/f_cfv_5', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls_cfv.split('\n')[:5]))
+            print(f'✅ 写入f_cfv_5成功！')
+        with open('docs/f_cfv_10', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls_cfv.split('\n')[:10]))
+            print(f'✅ 写入f_cfv_10成功！')
+        with open('docs/f_cfv_15', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls_cfv.split('\n')[:15]))
+            print(f'✅ 写入f_cfv_15成功！')
 
