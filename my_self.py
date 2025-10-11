@@ -96,8 +96,7 @@ def update_A(host, host_domain, host_token, worker, worker_token, node_num):
         except Exception as e:
             print(f"❌ {domain} 获取domain记录信息失败：{str(e)}")
             return
-
-        while int(node_num) - sub_name > 0:
+        while int(node_num) > 0:
             current_ip = unique_ips.pop()
             if not current_ip: return
 
@@ -121,6 +120,7 @@ def update_A(host, host_domain, host_token, worker, worker_token, node_num):
                 print(f"❌ {sub_name}.{domain} 操作失败：{str(e)}")
             finally:
                 sub_name += 1
+                node_num -= 1
                 bulid_vless_urls(str(sub_name), domain, worker, worker_token)
 
 def bulid_vless_urls(a, b, c, d):
