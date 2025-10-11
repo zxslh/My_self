@@ -6,6 +6,7 @@ import random
 
 def get_ips(worker='', worker_token=''):
     global unique_ips
+    global node_num
     update_list = [
         {'domain': 'cf-zxs.dynv6.net', 'url': 'https://ip.164746.xyz'},
         {'domain': 'cf-zxs.v6.army', 'url': 'https://ipdb.api.030101.xyz/?type=bestcf&country=true'},
@@ -41,6 +42,7 @@ def get_ips(worker='', worker_token=''):
                 unique_ips.update(ip_matches)
                 print(f"❌ {list['domain']}: {str(e)}")
             finally:
+                node_num -= 1
                 bulid_vless_urls(list['domain'].split(".", 1)[0], list['domain'].split(".", 1)[1], worker, worker_token)
         else:
             print(f"❌ {list['url']}未返回IP")
@@ -48,6 +50,7 @@ def get_ips(worker='', worker_token=''):
 def update_A(host, host_domain, host_token, worker, worker_token):
 
     act = 'post'
+    global node_num
 
     if host == 'dynv6':
         base_url = 'https://dynv6.com/api/v2/zones'
@@ -147,14 +150,14 @@ if __name__ == "__main__":
     DYNU_TOKEN = os.getenv('DYNU_TOKEN')
     QQ_771_TOKEN = os.getenv('QQ_771_TOKEN')
     LIVE_CRV_TOKEN = os.getenv('LIVE_CRV_TOKEN')
-    node_num = 30
+    node_num = 60
     
     get_ips('771.qq-zxs.dns.army', QQ_771_TOKEN)
  #   get_ips()
 
     if unique_ips:
+        update_A('dynu', '', DYNU_TOKEN, 'crv.live-zxs.dns.army', LIVE_CRV_TOKEN)  # 因DYNU有限制，先执行，剩余使用DYNV6
         update_A('dynv6', 'cf-zxs.dns.army', DYNV6_TOKEN, '771.qq-zxs.dns.army', QQ_771_TOKEN)
-        update_A('dynu', '', DYNU_TOKEN, 'crv.live-zxs.dns.army', LIVE_CRV_TOKEN)
 
     if vless_urls:
         with open('docs/index.html', 'w', encoding='utf-8') as file:
