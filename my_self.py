@@ -133,7 +133,7 @@ def bulid_vless_urls(a, b, c, d):
     global vless_urls_crv
     ports = ['443','2053','2083','2087','2096','8443']
     port = random.choice(ports)
-  #  port = 443  # 固定端口，随机端口请注销此项
+    port = 443  # 固定端口，随机端口请注销此项
     vless_url = f"vless://{d}@{a}.{b}:{port}?path=%2F%3Fed%3D2560&security=tls&encryption=none&host={c}&type=ws&sni={c}#{c[0:3]}-{b[0]}-{a}"
     vless_urls += f'{vless_url}\n'
     if c == '771.qq-zxs.dns.army':
@@ -150,7 +150,7 @@ if __name__ == "__main__":
     DYNU_TOKEN = os.getenv('DYNU_TOKEN')
     QQ_771_TOKEN = os.getenv('QQ_771_TOKEN')
     LIVE_CFV_TOKEN = os.getenv('LIVE_CFV_TOKEN')
-    node_num = 65
+    node_num = 65  # 改变节点数量后需注消exit（）
     
     get_ips('771.qq-zxs.dns.army', QQ_771_TOKEN)
  #   get_ips()
@@ -163,6 +163,7 @@ if __name__ == "__main__":
         with open('docs/index.html', 'w', encoding='utf-8') as file:
             file.write(vless_urls)
             print(f'✅ 写入index成功！')
+        exit()
         with open('docs/index_5', 'w', encoding='utf-8') as file:
             file.write('\n'.join(vless_urls.split('\n')[:5]))
             print(f'✅ 写入index_5成功！')
