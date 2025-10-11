@@ -117,6 +117,8 @@ def update_A(host, host_domain, host_token, worker, worker_token, node_num):
                 update_response.raise_for_status()
                 print(f"✅ 成功：{sub_name}.{domain} → {current_ip}")
             except Exception as e:
+                if "501 Server Error" in str(e)
+                    break
                 print(f"❌ {sub_name}.{domain} 操作失败：{str(e)}")
             finally:
                 sub_name += 1
