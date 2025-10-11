@@ -5,6 +5,7 @@ import os
 import random
 
 def get_ips(token=''):
+    global unique_ips
     update_list = [
         {'domain': 'cf-zxs.dynv6.net', 'url': 'https://ip.164746.xyz'},
         {'domain': 'cf-zxs.v6.army', 'url': 'https://ipdb.api.030101.xyz/?type=bestcf&country=true'},
