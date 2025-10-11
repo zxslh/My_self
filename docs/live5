@@ -1,5 +1,5 @@
-vless://f02004a6-564b-47e2-949d-2e96e402e72a@cf-zxs.dynv6.net:2053?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=f02.live-zxs.dns.army&type=ws&sni=f02.live-zxs.dns.army#f02-d-cf-zxs
-vless://f02004a6-564b-47e2-949d-2e96e402e72a@cf-zxs.v6.army:2087?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=f02.live-zxs.dns.army&type=ws&sni=f02.live-zxs.dns.army#f02-v-cf-zxs
-vless://f02004a6-564b-47e2-949d-2e96e402e72a@cf-zxs.dns.army:2053?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=f02.live-zxs.dns.army&type=ws&sni=f02.live-zxs.dns.army#f02-d-cf-zxs
-vless://f02004a6-564b-47e2-949d-2e96e402e72a@cf-zxs.dns.navy:2087?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=f02.live-zxs.dns.army&type=ws&sni=f02.live-zxs.dns.army#f02-d-cf-zxs
-vless://f02004a6-564b-47e2-949d-2e96e402e72a@cf-zxs.v6.navy:8443?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=f02.live-zxs.dns.army&type=ws&sni=f02.live-zxs.dns.army#f02-v-cf-zxs
+vless://f02004a6-564b-47e2-949d-2e96e402e72a@cf-zxs.dynv6.net:8443?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=f02.live-zxs.dns.army&type=ws&sni=f02.live-zxs.dns.army#f02-d-cf-zxs
+vless://f02004a6-564b-47e2-949d-2e96e402e72a@cf-zxs.v6.army:443?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=f02.live-zxs.dns.army&type=ws&sni=f02.live-zxs.dns.army#f02-v-cf-zxs
+vless://f02004a6-564b-47e2-949d-2e96e402e72a@cf-zxs.dns.army:2096?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=f02.live-zxs.dns.army&type=ws&sni=f02.live-zxs.dns.army#f02-d-cf-zxs
+vless://f02004a6-564b-47e2-949d-2e96e402e72a@cf-zxs.dns.navy:443?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=f02.live-zxs.dns.army&type=ws&sni=f02.live-zxs.dns.army#f02-d-cf-zxs
+vless://f02004a6-564b-47e2-949d-2e96e402e72a@cf-zxs.v6.navy:2096?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=f02.live-zxs.dns.army&type=ws&sni=f02.live-zxs.dns.army#f02-v-cf-zxs
