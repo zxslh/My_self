@@ -4,7 +4,7 @@ import re
 import os
 import random
 
-def get_ips(token=''):
+def get_ips(worker='', worker_token=''):
     global unique_ips
     update_list = [
         {'domain': 'cf-zxs.dynv6.net', 'url': 'https://ip.164746.xyz'},
@@ -25,12 +25,12 @@ def get_ips(token=''):
             print(f"❌ 失败: {e}")
             continue
         if ip_matches:
-            if not token:
+            if not worker:
                 unique_ips.update(ip_matches)
                 continue
             try:
                 ipv4 = ip_matches[0]
-                update_url = f"http://dynv6.com/api/update?token={token}&hostname={list['domain']}&ipv4={ipv4}"
+                update_url = f"http://dynv6.com/api/update?token={DYNV6_TOKEN}&hostname={list['domain']}&ipv4={ipv4}"
                 response = requests.get(update_url, timeout=10).text.strip()
                 if any(keyword in response for keyword in ["good", "Ok", "nochg", "updated", "unchanged"]):
                     print(f"✅ {list['domain']}：{response}")
@@ -41,41 +41,34 @@ def get_ips(token=''):
                 unique_ips.update(ip_matches)
                 print(f"❌ {list['domain']}: {e}")
             finally:
-                bulid_vless_urls(list['domain'].split(".", 1)[0], list['domain'].split(".", 1)[1], 'cfv.live-zxs.dns.army', 'LIVE_CFV_TOKEN')
+                bulid_vless_urls(list['domain'].split(".", 1)[0], list['domain'].split(".", 1)[1], worker, worker_token)
         else:
             print(f"❌ {list['url']}未返回IP")
             
-def update_A(host, domain=''):
+def update_A(host, host_domain, host_token, worker, worker_token, node_num):
+
     act = 'post'
 
     if host == 'dynv6':
-        api_token = os.getenv('DYNV6_TOKEN')
         base_url = 'https://dynv6.com/api/v2/zones'
         headers = {
-           "Authorization": f"Bearer {api_token}",
+           "Authorization": f"Bearer {host_token}",
            "Content-Type": "application/json"
         }
         r_record = 'records'
-        r_limit = 41  # 节点数量30（41-11）
         r_name = 'name'
         r_type = 'type'
         r_data = 'data'
-        r_worker = '771.qq-zxs.dns.army'
-        r_token = 'QQ_771_TOKEN'
     elif host == 'dynu':
-        api_token = os.getenv('DYNU_TOKEN')
         base_url = 'https://api.dynu.com/v2/dns'
         headers = {
             "accept": "application/json",
-            "API-Key": api_token
+            "API-Key": host_token
         }
         r_record = 'record'
-        r_limit = 15  # 节点数量4（15-11）
         r_name = 'nodeName'
         r_type = 'recordType'
         r_data = 'ipv4Address'
-        r_worker = 'cfv.live-zxs.dns.army'
-        r_token = 'LIVE_CFV_TOKEN'
     else:
         return
 
@@ -89,9 +82,9 @@ def update_A(host, domain=''):
         return
 
     for domain_data in all_domains:
-        if domain and domain != domain_data['name']: continue
+        if host_domain and host_domain != domain_data['name']: continue
         zoneID = domain_data['id']
-        name = domain_data['name']  # 和参数domain冲突，改名name
+        domain = domain_data['name']
         sub_name = 11
         url = f"{base_url}/{zoneID}/{r_record}"
         act_url = url
@@ -101,10 +94,10 @@ def update_A(host, domain=''):
             all_records = response.json()
             if isinstance(all_records, dict): all_records = all_records['dnsRecords']
         except Exception as e:
-            print(f"❌ {name} 获取domain记录信息失败：{str(e)}")
+            print(f"❌ {domain} 获取domain记录信息失败：{str(e)}")
             return
 
-        while sub_name < r_limit:
+        while int(node_num) - sub_name > 0:
             current_ip = unique_ips.pop()
             if not current_ip: return
 
@@ -123,12 +116,12 @@ def update_A(host, domain=''):
                         break
                 update_response = getattr(requests, act)(act_url, headers=headers, data=json.dumps(record_data))
                 update_response.raise_for_status()
-                print(f"✅ 成功：{sub_name}.{name} → {current_ip}")
+                print(f"✅ 成功：{sub_name}.{domain} → {current_ip}")
             except Exception as e:
-                print(f"❌ {sub_name}.{name} 操作失败：{str(e)}")
+                print(f"❌ {sub_name}.{domain} 操作失败：{str(e)}")
             finally:
                 sub_name += 1
-                bulid_vless_urls(str(sub_name), name, r_worker, r_token)
+                bulid_vless_urls(str(sub_name), domain, worker, worker_token)
 
 def bulid_vless_urls(a, b, c, d):
     global vless_urls
@@ -137,9 +130,7 @@ def bulid_vless_urls(a, b, c, d):
     ports = ['443','2053','2083','2087','2096','8443']
     port = random.choice(ports)
     port = 443  # 固定端口，随机端口请注销此项
-    uuid = os.getenv(d)
-    if not uuid: return
-    vless_url = f"vless://{uuid}@{a}.{b}:{port}?path=%2F%3Fed%3D2560&security=tls&encryption=none&host={c}&type=ws&sni={c}#{c[0:3]}-{b[0]}-{a}"
+    vless_url = f"vless://{d}@{a}.{b}:{port}?path=%2F%3Fed%3D2560&security=tls&encryption=none&host={c}&type=ws&sni={c}#{c[0:3]}-{b[0]}-{a}"
     vless_urls += f'{vless_url}\n'
     if c == '771.qq':
         vless_urls_771 += f'{vless_url}\n'
@@ -151,12 +142,16 @@ if __name__ == "__main__":
     vless_urls_771 = ''
     vless_urls_crv = ''
     unique_ips = set()
+    DYNV6_TOKEN = os.getenv('DYNV6_TOKEN')
+    DYNU_TOKEN = os.getenv('DYNU_TOKEN')
+    QQ_771_TOKEN = os.getenv('QQ_771_TOKEN')
+    LIVE_CRV_TOKEN = os.getenv('LIVE_CRV_TOKEN')
 
-    get_ips(os.getenv('DYNV6_TOKEN'))
+    get_ips('771.qq-zxs.dns.army', QQ_771_TOKEN)
 
     if unique_ips:
-        update_A('dynv6', 'cf-zxs.dns.army')
-        update_A('dynu')
+        update_A('dynv6', 'cf-zxs.dns.army', DYNV6_TOKEN, '771.qq-zxs.dns.army', QQ_771_TOKEN, 30)
+        update_A('dynu', '', DYNU_TOKEN, 'crv.live-zxs.dns.army', LIVE_CRV_TOKEN, 4)
 
     if vless_urls:
         with open('docs/index.html', 'w', encoding='utf-8') as file:
