@@ -34,13 +34,14 @@ def get_ips(token=''):
                 response = requests.get(update_url, timeout=10).text.strip()
                 if any(keyword in response for keyword in ["good", "Ok", "nochg", "updated", "unchanged"]):
                     print(f"✅ {list['domain']}：{response}")
-                    bulid_vless_urls(list['domain'].split(".", 1)[0], list['domain'].split(".", 1)[1], 'cfv.live', 'LIVE_CFV_TOKEN')
                     unique_ips.update(ip_matches[1:])
                 else:
                     raise
             except Exception as e:
                 unique_ips.update(ip_matches)
                 print(f"❌ {list['domain']}: {e}")
+            finally:
+                bulid_vless_urls(list['domain'].split(".", 1)[0], list['domain'].split(".", 1)[1], 'cfv.live', 'LIVE_CFV_TOKEN')
         else:
             print(f"❌ {list['url']}未返回IP")
             
@@ -123,11 +124,11 @@ def update_A(host, domain=''):
                 update_response = getattr(requests, act)(act_url, headers=headers, data=json.dumps(record_data))
                 update_response.raise_for_status()
                 print(f"✅ 成功：{sub_name}.{name} → {current_ip}")
-                bulid_vless_urls(str(sub_name), name, r_vless, r_token)
             except Exception as e:
                 print(f"❌ {sub_name}.{name} 操作失败：{str(e)}")
             finally:
                 sub_name += 1
+                bulid_vless_urls(str(sub_name), name, r_vless, r_token)
 
 def bulid_vless_urls(a, b, c, d):
     global vless_urls
@@ -135,6 +136,7 @@ def bulid_vless_urls(a, b, c, d):
     global vless_urls_crv
     ports = ['443','2053','2083','2087','2096','8443']
     port = random.choice(ports)
+    port = 443
     uuid = os.getenv(d)
     if not uuid: return
     host = f'{c}-zxs.dns.army'
