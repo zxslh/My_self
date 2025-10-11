@@ -119,13 +119,13 @@ def update_A(host, host_domain, host_token, worker, worker_token):
                 update_response = getattr(requests, act)(act_url, headers=headers, data=json.dumps(record_data))
                 update_response.raise_for_status()
                 print(f"✅ 成功：{sub_name}.{domain} → {current_ip}")
-            except Exception as e:
-                if "501 S" in str(e) or "401 E" in str(e): break
-                print(f"❌ {sub_name}.{domain} 操作失败：{str(e)}")
-            finally:
                 bulid_vless_urls(str(sub_name), domain, worker, worker_token)
                 sub_name += 1
                 node_num -= 1
+            except Exception as e:
+                if "501 S" not in str(e) or "401 E" not in str(e): 
+                    print(f"❌ {sub_name}.{domain} 操作失败：{str(e)}")
+                break
                 
 def bulid_vless_urls(a, b, c, d):
     global vless_urls
