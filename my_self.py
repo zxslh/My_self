@@ -124,7 +124,7 @@ def update_A(host, host_domain, host_token, worker, worker_token):
                 sub_name += 1
                 node_num -= 1
             except Exception as e:
-                if "501 S" not in str(e) or "401 E" not in str(e): 
+                if "501 S" not in str(e) and "401 E" not in str(e): 
                     print(f"❌ {sub_name}.{domain} 操作失败：{str(e)}")
                 break
                 
