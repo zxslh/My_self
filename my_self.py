@@ -108,6 +108,7 @@ def update_A(host, host_domain, host_token, worker, worker_token):
                 r_type: "A",
                 r_data: current_ip,
                 "ttl": 3600,
+                "state": True
             }
 
             try:
