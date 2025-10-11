@@ -160,14 +160,77 @@ if __name__ == "__main__":
         with open('docs/index.html', 'w', encoding='utf-8') as file:
             file.write(vless_urls)
             print(f'✅ 写入index成功！')
+        with open('docs/index_5', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls.split('\n')[:5]))
+            print(f'✅ 写入index_5成功！')
+        with open('docs/index_10', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls.split('\n')[:10]))
+            print(f'✅ 写入index_10成功！')
+        with open('docs/index_15', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls.split('\n')[:15]))
+            print(f'✅ 写入index_15成功！')
+        with open('docs/index_20', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls.split('\n')[:20]))
+            print(f'✅ 写入index_20成功！')
+        with open('docs/index_25', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls.split('\n')[:25]))
+            print(f'✅ 写入index_25成功！')
+        with open('docs/index_30', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls.split('\n')[:30]))
+            print(f'✅ 写入index_30成功！')
+        with open('docs/index_35', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls.split('\n')[:35]))
+            print(f'✅ 写入index_35成功！')
+        with open('docs/index_40', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls.split('\n')[:40]))
+            print(f'✅ 写入index_40成功！')
+        with open('docs/index_45', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls.split('\n')[:45]))
+            print(f'✅ 写入index_45成功！')
+        with open('docs/index_50', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls.split('\n')[:50]))
+            print(f'✅ 写入index_50成功！')
+        with open('docs/index_55', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls.split('\n')[:55]))
+            print(f'✅ 写入index_55成功！')
+        with open('docs/index_60', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls.split('\n')[:60]))
+            print(f'✅ 写入index_60成功！')
             
     if vless_urls_771:
         with open('docs/f_771', 'w', encoding='utf-8') as file:
             file.write(vless_urls_771)
             print(f'✅ 写入f_771成功！')
+        with open('docs/f_771_5', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls_771.split('\n')[:5]))
+            print(f'✅ 写入f_771_5成功！')
+        with open('docs/f_771_10', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls_771.split('\n')[:10]))
+            print(f'✅ 写入f_771_10成功！')
+        with open('docs/f_771_15', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls_771.split('\n')[:15]))
+            print(f'✅ 写入f_771_15成功！')
+        with open('docs/f_771_20', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls_771.split('\n')[:20]))
+            print(f'✅ 写入f_771_20成功！')
+        with open('docs/f_771_25', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls_771.split('\n')[:25]))
+            print(f'✅ 写入f_771_25成功！')
+        with open('docs/f_771_30', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls_771.split('\n')[:30]))
+            print(f'✅ 写入f_771_30成功！')
             
     if vless_urls_crv:
         with open('docs/f_crv', 'w', encoding='utf-8') as file:
             file.write(vless_urls_crv)
             print(f'✅ 写入f_crv成功！')
+        with open('docs/f_crv_5', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls_crv.split('\n')[:5]))
+            print(f'✅ 写入f_crv_5成功！')
+        with open('docs/f_crv_10', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls_crv.split('\n')[:10]))
+            print(f'✅ 写入f_crv_10成功！')
+        with open('docs/f_crv_15', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls_crv.split('\n')[:15]))
+            print(f'✅ 写入f_crv_15成功！')
 
