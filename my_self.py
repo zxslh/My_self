@@ -133,7 +133,7 @@ def bulid_vless_urls(a, b, c, d):
     global vless_urls_crv
     ports = ['443','2053','2083','2087','2096','8443']
     port = random.choice(ports)
-    port = 443  # 固定端口，随机端口请注销此项
+  #  port = 443  # 固定端口，随机端口请注销此项
     vless_url = f"vless://{d}@{a}.{b}:{port}?path=%2F%3Fed%3D2560&security=tls&encryption=none&host={c}&type=ws&sni={c}#{c[0:3]}-{b[0]}-{a}"
     vless_urls += f'{vless_url}\n'
     if c == '771.qq-zxs.dns.army':
