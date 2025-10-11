@@ -1,5 +1,5 @@
-vless://77146000-d7ce-493d-98ad-b913a79c12cd@cf-zxs.dynv6.net:2053?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=771.qq-zxs.dns.army&type=ws&sni=771.qq-zxs.dns.army#771-d-cf-zxs
-vless://77146000-d7ce-493d-98ad-b913a79c12cd@cf-zxs.v6.army:2083?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=771.qq-zxs.dns.army&type=ws&sni=771.qq-zxs.dns.army#771-v-cf-zxs
-vless://77146000-d7ce-493d-98ad-b913a79c12cd@cf-zxs.dns.army:2083?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=771.qq-zxs.dns.army&type=ws&sni=771.qq-zxs.dns.army#771-d-cf-zxs
-vless://77146000-d7ce-493d-98ad-b913a79c12cd@cf-zxs.dns.navy:2083?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=771.qq-zxs.dns.army&type=ws&sni=771.qq-zxs.dns.army#771-d-cf-zxs
-vless://77146000-d7ce-493d-98ad-b913a79c12cd@cf-zxs.v6.navy:2096?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=771.qq-zxs.dns.army&type=ws&sni=771.qq-zxs.dns.army#771-v-cf-zxs
+vless://77146000-d7ce-493d-98ad-b913a79c12cd@cf-zxs.dynv6.net:443?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=771.qq-zxs.dns.army&type=ws&sni=771.qq-zxs.dns.army#771-d-cf-zxs
+vless://77146000-d7ce-493d-98ad-b913a79c12cd@cf-zxs.v6.army:443?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=771.qq-zxs.dns.army&type=ws&sni=771.qq-zxs.dns.army#771-v-cf-zxs
+vless://77146000-d7ce-493d-98ad-b913a79c12cd@cf-zxs.dns.army:2096?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=771.qq-zxs.dns.army&type=ws&sni=771.qq-zxs.dns.army#771-d-cf-zxs
+vless://77146000-d7ce-493d-98ad-b913a79c12cd@cf-zxs.dns.navy:2096?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=771.qq-zxs.dns.army&type=ws&sni=771.qq-zxs.dns.army#771-d-cf-zxs
+vless://77146000-d7ce-493d-98ad-b913a79c12cd@cf-zxs.v6.navy:2087?path=%2F%3Fed%3D2560&security=tls&encryption=none&host=771.qq-zxs.dns.army&type=ws&sni=771.qq-zxs.dns.army#771-v-cf-zxs
