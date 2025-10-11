@@ -149,21 +149,23 @@ if __name__ == "__main__":
     DYNV6_TOKEN = os.getenv('DYNV6_TOKEN')
     DYNU_TOKEN = os.getenv('DYNU_TOKEN')
     QQ_771_TOKEN = os.getenv('QQ_771_TOKEN')
+    QQ_771_HOST = '771.qq-zxs.dns.army'
     LIVE_CFV_TOKEN = os.getenv('LIVE_CFV_TOKEN')
-    node_num = 65  # 改变节点数量后需注消exit（）
+    LIVE_CFV_HOST = 'cfv.live-zxs.dns.army'
+    node_num = 65  # 改变节点数量后需注消exit（）运行一次
     
     get_ips('771.qq-zxs.dns.army', QQ_771_TOKEN)
  #   get_ips()
 
     if unique_ips:
-        update_A('dynu', '', DYNU_TOKEN, 'crv.live-zxs.dns.army', LIVE_CFV_TOKEN)  # 因DYNU有限制，先执行，剩余使用DYNV6
-        update_A('dynv6', 'cf-zxs.dns.army', DYNV6_TOKEN, '771.qq-zxs.dns.army', QQ_771_TOKEN)
+        update_A('dynu', '', DYNU_TOKEN, LIVE_CFV_HOST, LIVE_CFV_TOKEN)  # 因DYNU有限制，先执行，剩余使用DYNV6
+        update_A('dynv6', 'cf-zxs.dns.army', DYNV6_TOKEN, QQ_771_HOST, QQ_771_TOKEN)
 
     if vless_urls:
         with open('docs/index.html', 'w', encoding='utf-8') as file:
             file.write(vless_urls)
             print(f'✅ 写入index成功！')
-        exit()
+       # exit()
         with open('docs/index_5', 'w', encoding='utf-8') as file:
             file.write('\n'.join(vless_urls.split('\n')[:5]))
             print(f'✅ 写入index_5成功！')
