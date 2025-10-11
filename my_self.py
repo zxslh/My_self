@@ -148,11 +148,11 @@ if __name__ == "__main__":
     QQ_771_TOKEN = os.getenv('QQ_771_TOKEN')
     LIVE_CRV_TOKEN = os.getenv('LIVE_CRV_TOKEN')
 
- #   get_ips('771.qq-zxs.dns.army', QQ_771_TOKEN)
-    get_ips()
+    get_ips('771.qq-zxs.dns.army', QQ_771_TOKEN)
+ #   get_ips()
 
     if unique_ips:
-     #   update_A('dynv6', 'cf-zxs.dns.army', DYNV6_TOKEN, '771.qq-zxs.dns.army', QQ_771_TOKEN, 30)
+        update_A('dynv6', 'cf-zxs.dns.army', DYNV6_TOKEN, '771.qq-zxs.dns.army', QQ_771_TOKEN, 30)
         update_A('dynu', '', DYNU_TOKEN, 'crv.live-zxs.dns.army', LIVE_CRV_TOKEN, 6)
 
     if vless_urls:
