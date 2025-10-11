@@ -37,6 +37,7 @@ jobs:
         DYNU_TOKEN: ${{ secrets.DYNU_TOKEN }}
         LIVE_CFV_TOKEN: ${{ secrets.LIVE_CFV_TOKEN }}
         LIVE_F02_TOKEN: ${{ secrets.LIVE_F02_TOKEN }}
+        LJK_E37_TOKEN: ${{ secrets.LJK_E37_TOKEN }}
       run: |
         python ${{ github.workspace }}/my_self.py
         
