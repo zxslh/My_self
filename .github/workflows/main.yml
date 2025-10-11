@@ -36,6 +36,7 @@ jobs:
         QQ_771_TOKEN: ${{ secrets.QQ_771_TOKEN }}
         DYNU_TOKEN: ${{ secrets.DYNU_TOKEN }}
         LIVE_CFV_TOKEN: ${{ secrets.LIVE_CFV_TOKEN }}
+        LIVE_F02_TOKEN: ${{ secrets.LIVE_F02_TOKEN }}
       run: |
         python ${{ github.workspace }}/my_self.py
         
