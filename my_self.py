@@ -134,7 +134,7 @@ def bulid_vless_urls(a, b, c, d):
     global vless_urls_live
     ports = ['443','2053','2083','2087','2096','8443']
     port = random.choice(ports)
-  #  port = 443  # 固定端口，随机端口请注销此项
+    port = 443  # 固定端口，随机端口请注销此项
     vless_url = f"vless://{d}@{a}.{b}:{port}?path=%2F%3Fed%3D2560&security=tls&encryption=none&host={c}&type=ws&sni={c}#{c[0:3]}-{b[0]}-{a}"
     vless_urls += f'{vless_url}\n'
     if c == QQ_HOST:
@@ -169,7 +169,7 @@ if __name__ == "__main__":
         with open('docs/index.html', 'w', encoding='utf-8') as file:
             file.write(vless_urls)
             print(f'✅ 写入index成功！')
-    #    exit()
+        exit()
         with open('docs/index5', 'w', encoding='utf-8') as file:
             file.write('\n'.join(vless_urls.split('\n')[:5]))
             print(f'✅ 写入index5成功！')
