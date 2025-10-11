@@ -149,14 +149,14 @@ if __name__ == "__main__":
     DYNV6_TOKEN = os.getenv('DYNV6_TOKEN')
     DYNU_TOKEN = os.getenv('DYNU_TOKEN')
     QQ_771_TOKEN = os.getenv('QQ_771_TOKEN')
-    LIVE_CRV_TOKEN = os.getenv('LIVE_CRV_TOKEN')
+    LIVE_CFV_TOKEN = os.getenv('LIVE_CFV_TOKEN')
     node_num = 60
     
     get_ips('771.qq-zxs.dns.army', QQ_771_TOKEN)
  #   get_ips()
 
     if unique_ips:
-        update_A('dynu', '', DYNU_TOKEN, 'crv.live-zxs.dns.army', LIVE_CRV_TOKEN)  # 因DYNU有限制，先执行，剩余使用DYNV6
+        update_A('dynu', '', DYNU_TOKEN, 'crv.live-zxs.dns.army', LIVE_CFV_TOKEN)  # 因DYNU有限制，先执行，剩余使用DYNV6
         update_A('dynv6', 'cf-zxs.dns.army', DYNV6_TOKEN, '771.qq-zxs.dns.army', QQ_771_TOKEN)
 
     if vless_urls:
