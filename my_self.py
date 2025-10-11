@@ -42,8 +42,6 @@ def get_ips(token=''):
             print(f"❌ {list['url']}未返回IP")
             
 def update_A(host, domain=''):
-    # 基础变量，api_token使用全局变量
-    domain = domain
     act = 'post'
 
     if host == 'dynv6':
@@ -89,7 +87,7 @@ def update_A(host, domain=''):
     for domain_data in all_domains:
         if domain and domain != domain_data['name']: continue
         zoneID = domain_data['id']
-        name = domain_data['name']
+        name = domain_data['name'] # 和参数domain冲突，改名name
         sub_name = 11
         url = f"{base_url}/{zoneID}/{r_record}"
         act_url = url
@@ -99,7 +97,7 @@ def update_A(host, domain=''):
             all_records = response.json()
             if isinstance(all_records, dict): all_records = all_records['dnsRecords']
         except Exception as e:
-            print(f"❌ {name} 操作失败：{str(e)}")
+            print(f"❌ {name} 获取domain记录信息失败：{str(e)}")
             return
 
         while sub_name < r_limit:
@@ -133,11 +131,10 @@ def bulid_vless_urls(a, b, c, d):
     global vless_urls_771
     global vless_urls_crv
     ports = ['443','2053','2083','2087','2096','8443']
+    port = random.choice(ports)
     uuid = os.getenv(d)
     if not uuid: return
-    port = random.choice(ports)
     host = f'{c}-zxs.dns.army'
-    if not uuid: return
     vless_url = f"vless://{uuid}@{a}.{b}:{port}?path=%2F%3Fed%3D2560&security=tls&encryption=none&host={host}&type=ws&sni={host}#{c[0:3]}-{b[0]}-{a}"
     vless_urls += f'{vless_url}\n'
     if c == '771.qq':
