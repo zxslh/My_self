@@ -32,12 +32,15 @@ def get_ips(token=''):
                 ipv4 = ip_matches[0]
                 update_url = f"http://dynv6.com/api/update?token={token}&hostname={list['domain']}&ipv4={ipv4}"
                 response = requests.get(update_url, timeout=10).text.strip()
-                print(f"✅ {ipv4}@{response}@{list['domain']}")
-                bulid_vless_urls(list['domain'].split(".", 1)[0], list['domain'].split(".", 1)[1], 'cfv.live', 'LIVE_CFV_TOKEN')
-                unique_ips.update(ip_matches[1:])
+                if any(keyword in response for keyword in ["good", "Ok", "nochg", "updated", "unchanged"]):
+                    print(f"✅ {list['domain']}：{response}")
+                    bulid_vless_urls(list['domain'].split(".", 1)[0], list['domain'].split(".", 1)[1], 'cfv.live', 'LIVE_CFV_TOKEN')
+                    unique_ips.update(ip_matches[1:])
+                else:
+                    raise
             except Exception as e:
                 unique_ips.update(ip_matches)
-                print(f"❌ 失败: {e}")
+                print(f"❌ {list['domain']}: {e}")
         else:
             print(f"❌ {list['url']}未返回IP")
             
