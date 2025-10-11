@@ -22,7 +22,7 @@ def get_ips(worker='', worker_token=''):
             response = requests.get(list['url'], timeout=10).text
             ip_matches = re.findall(ip_pattern, response, re.IGNORECASE)
         except Exception as e:
-            print(f"❌ 失败: {e}")
+            print(f"❌ 失败: {str(e)}")
             continue
         if ip_matches:
             if not worker:
@@ -36,10 +36,10 @@ def get_ips(worker='', worker_token=''):
                     print(f"✅ {list['domain']}：{response}")
                     unique_ips.update(ip_matches[1:])
                 else:
-                    raise
+                    raise Exception({response})
             except Exception as e:
                 unique_ips.update(ip_matches)
-                print(f"❌ {list['domain']}: {e}")
+                print(f"❌ {list['domain']}: {str(e)}")
             finally:
                 bulid_vless_urls(list['domain'].split(".", 1)[0], list['domain'].split(".", 1)[1], worker, worker_token)
         else:
@@ -78,7 +78,7 @@ def update_A(host, host_domain, host_token, worker, worker_token, node_num):
         all_domains = response.json()
         if isinstance(all_domains, dict): all_domains = all_domains['domains']
     except Exception as e:
-        print(f'❌ 获取区域信息失败：{str(e)}')
+        print(f'❌ 获取所有domain信息失败：{str(e)}')
         return
 
     for domain_data in all_domains:
@@ -95,7 +95,7 @@ def update_A(host, host_domain, host_token, worker, worker_token, node_num):
             if isinstance(all_records, dict): all_records = all_records['dnsRecords']
         except Exception as e:
             print(f"❌ {domain} 获取domain记录信息失败：{str(e)}")
-            return
+            continue
         while int(node_num) > 0:
             current_ip = unique_ips.pop()
             if not current_ip: return
@@ -116,11 +116,11 @@ def update_A(host, host_domain, host_token, worker, worker_token, node_num):
                 update_response = getattr(requests, act)(act_url, headers=headers, data=json.dumps(record_data))
                 update_response.raise_for_status()
                 print(f"✅ 成功：{sub_name}.{domain} → {current_ip}")
+                sub_name += 1
             except Exception as e:
                 if "501 S" in str(e) or "401 E" in str(e): break
                 print(f"❌ {sub_name}.{domain} 操作失败：{str(e)}")
             finally:
-                sub_name += 1
                 node_num -= 1
                 bulid_vless_urls(str(sub_name), domain, worker, worker_token)
 
@@ -133,9 +133,9 @@ def bulid_vless_urls(a, b, c, d):
     port = 443  # 固定端口，随机端口请注销此项
     vless_url = f"vless://{d}@{a}.{b}:{port}?path=%2F%3Fed%3D2560&security=tls&encryption=none&host={c}&type=ws&sni={c}#{c[0:3]}-{b[0]}-{a}"
     vless_urls += f'{vless_url}\n'
-    if c == '771.qq':
+    if c == '771.qq-zxs.dns.army':
         vless_urls_771 += f'{vless_url}\n'
-    if c == 'cfv.live':
+    if c == 'crv.live-zxs.dns.army':
         vless_urls_crv += f'{vless_url}\n'
             
 if __name__ == "__main__":
