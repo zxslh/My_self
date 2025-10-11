@@ -150,7 +150,7 @@ if __name__ == "__main__":
     DYNU_TOKEN = os.getenv('DYNU_TOKEN')
     QQ_771_TOKEN = os.getenv('QQ_771_TOKEN')
     LIVE_CFV_TOKEN = os.getenv('LIVE_CFV_TOKEN')
-    node_num = 60
+    node_num = 65
     
     get_ips('771.qq-zxs.dns.army', QQ_771_TOKEN)
  #   get_ips()
