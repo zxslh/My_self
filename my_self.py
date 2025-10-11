@@ -136,9 +136,9 @@ def bulid_vless_urls(a, b, c, d):
   #  port = 443  # 固定端口，随机端口请注销此项
     vless_url = f"vless://{d}@{a}.{b}:{port}?path=%2F%3Fed%3D2560&security=tls&encryption=none&host={c}&type=ws&sni={c}#{c[0:3]}-{b[0]}-{a}"
     vless_urls += f'{vless_url}\n'
-    if c == '771.qq-zxs.dns.army':
+    if c == QQ_HOST:
         vless_urls_qq += f'{vless_url}\n'
-    if c == 'cfv.live-zxs.dns.army':
+    if c == LIVE_HOST:
         vless_urls_live += f'{vless_url}\n'
             
 if __name__ == "__main__":
