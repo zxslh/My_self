@@ -152,6 +152,8 @@ if __name__ == "__main__":
     QQ_HOST = '771.qq-zxs.dns.army'
     LIVE_TOKEN = os.getenv('LIVE_F02_TOKEN')
     LIVE_HOST = 'f02.live-zxs.dns.army'
+    DYNV6_domain = 'cf-zxs.dns.army'
+    DYNU_domain = ''
 
     node_num = 65  # 改变节点数量后需注消exit（）运行一次
     
@@ -159,8 +161,8 @@ if __name__ == "__main__":
  #   get_ips()
 
     if unique_ips:
-        update_A('dynu', '', DYNU_TOKEN, LIVE_HOST, LIVE_TOKEN)  # 因DYNU有限制，先执行，剩余使用DYNV6
-        update_A('dynv6', 'cf-zxs.dns.army', DYNV6_TOKEN, QQ_HOST, QQ_TOKEN)
+        update_A('dynu', DYNU_domain, DYNU_TOKEN, LIVE_HOST, LIVE_TOKEN)  # 因DYNU有限制，先执行，剩余使用DYNV6
+        update_A('dynv6', DYNV6_domain, DYNV6_TOKEN, QQ_HOST, QQ_TOKEN)
 
     if vless_urls:
         with open('docs/index.html', 'w', encoding='utf-8') as file:
