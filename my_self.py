@@ -129,114 +129,115 @@ def update_A(host, host_domain, host_token, worker, worker_token):
 
 def bulid_vless_urls(a, b, c, d):
     global vless_urls
-    global vless_urls_771
-    global vless_urls_cfv
+    global vless_urls_qq
+    global vless_urls_live
     ports = ['443','2053','2083','2087','2096','8443']
     port = random.choice(ports)
-    port = 443  # 固定端口，随机端口请注销此项
+  #  port = 443  # 固定端口，随机端口请注销此项
     vless_url = f"vless://{d}@{a}.{b}:{port}?path=%2F%3Fed%3D2560&security=tls&encryption=none&host={c}&type=ws&sni={c}#{c[0:3]}-{b[0]}-{a}"
     vless_urls += f'{vless_url}\n'
     if c == '771.qq-zxs.dns.army':
-        vless_urls_771 += f'{vless_url}\n'
+        vless_urls_qq += f'{vless_url}\n'
     if c == 'cfv.live-zxs.dns.army':
-        vless_urls_cfv += f'{vless_url}\n'
+        vless_urls_live += f'{vless_url}\n'
             
 if __name__ == "__main__":
     vless_urls = ''
-    vless_urls_771 = ''
-    vless_urls_cfv = ''
+    vless_urls_qq = ''
+    vless_urls_live = ''
     unique_ips = set()
     DYNV6_TOKEN = os.getenv('DYNV6_TOKEN')
     DYNU_TOKEN = os.getenv('DYNU_TOKEN')
-    QQ_771_TOKEN = os.getenv('QQ_771_TOKEN')
-    QQ_771_HOST = '771.qq-zxs.dns.army'
-    LIVE_CFV_TOKEN = os.getenv('LIVE_CFV_TOKEN')
-    LIVE_CFV_HOST = 'cfv.live-zxs.dns.army'
+    QQ_TOKEN = os.getenv('QQ_771_TOKEN')
+    QQ_HOST = '771.qq-zxs.dns.army'
+    LIVE_TOKEN = os.getenv('LIVE_F02_TOKEN')
+    LIVE_HOST = 'f02.live-zxs.dns.army'
+
     node_num = 65  # 改变节点数量后需注消exit（）运行一次
     
     get_ips('771.qq-zxs.dns.army', QQ_771_TOKEN)
  #   get_ips()
 
     if unique_ips:
-        update_A('dynu', '', DYNU_TOKEN, LIVE_CFV_HOST, LIVE_CFV_TOKEN)  # 因DYNU有限制，先执行，剩余使用DYNV6
-        update_A('dynv6', 'cf-zxs.dns.army', DYNV6_TOKEN, QQ_771_HOST, QQ_771_TOKEN)
+        update_A('dynu', '', DYNU_TOKEN, LIVE_HOST, LIVE_TOKEN)  # 因DYNU有限制，先执行，剩余使用DYNV6
+        update_A('dynv6', 'cf-zxs.dns.army', DYNV6_TOKEN, QQ_HOST, QQ_TOKEN)
 
     if vless_urls:
         with open('docs/index.html', 'w', encoding='utf-8') as file:
             file.write(vless_urls)
             print(f'✅ 写入index成功！')
-        exit()
-        with open('docs/index_5', 'w', encoding='utf-8') as file:
+     #   exit()
+        with open('docs/index5', 'w', encoding='utf-8') as file:
             file.write('\n'.join(vless_urls.split('\n')[:5]))
-            print(f'✅ 写入index_5成功！')
-        with open('docs/index_10', 'w', encoding='utf-8') as file:
+            print(f'✅ 写入index5成功！')
+        with open('docs/index10', 'w', encoding='utf-8') as file:
             file.write('\n'.join(vless_urls.split('\n')[:10]))
-            print(f'✅ 写入index_10成功！')
-        with open('docs/index_15', 'w', encoding='utf-8') as file:
+            print(f'✅ 写入index10成功！')
+        with open('docs/index15', 'w', encoding='utf-8') as file:
             file.write('\n'.join(vless_urls.split('\n')[:15]))
-            print(f'✅ 写入index_15成功！')
-        with open('docs/index_20', 'w', encoding='utf-8') as file:
+            print(f'✅ 写入index15成功！')
+        with open('docs/index20', 'w', encoding='utf-8') as file:
             file.write('\n'.join(vless_urls.split('\n')[:20]))
-            print(f'✅ 写入index_20成功！')
-        with open('docs/index_25', 'w', encoding='utf-8') as file:
+            print(f'✅ 写入index20成功！')
+        with open('docs/index25', 'w', encoding='utf-8') as file:
             file.write('\n'.join(vless_urls.split('\n')[:25]))
-            print(f'✅ 写入index_25成功！')
-        with open('docs/index_30', 'w', encoding='utf-8') as file:
+            print(f'✅ 写入index25成功！')
+        with open('docs/index30', 'w', encoding='utf-8') as file:
             file.write('\n'.join(vless_urls.split('\n')[:30]))
-            print(f'✅ 写入index_30成功！')
-        with open('docs/index_35', 'w', encoding='utf-8') as file:
+            print(f'✅ 写入index30成功！')
+        with open('docs/index35', 'w', encoding='utf-8') as file:
             file.write('\n'.join(vless_urls.split('\n')[:35]))
-            print(f'✅ 写入index_35成功！')
-        with open('docs/index_40', 'w', encoding='utf-8') as file:
+            print(f'✅ 写入index35成功！')
+        with open('docs/index40', 'w', encoding='utf-8') as file:
             file.write('\n'.join(vless_urls.split('\n')[:40]))
-            print(f'✅ 写入index_40成功！')
-        with open('docs/index_45', 'w', encoding='utf-8') as file:
+            print(f'✅ 写入index40成功！')
+        with open('docs/index45', 'w', encoding='utf-8') as file:
             file.write('\n'.join(vless_urls.split('\n')[:45]))
-            print(f'✅ 写入index_45成功！')
-        with open('docs/index_50', 'w', encoding='utf-8') as file:
+            print(f'✅ 写入index45成功！')
+        with open('docs/index50', 'w', encoding='utf-8') as file:
             file.write('\n'.join(vless_urls.split('\n')[:50]))
-            print(f'✅ 写入index_50成功！')
-        with open('docs/index_55', 'w', encoding='utf-8') as file:
+            print(f'✅ 写入index50成功！')
+        with open('docs/index55', 'w', encoding='utf-8') as file:
             file.write('\n'.join(vless_urls.split('\n')[:55]))
-            print(f'✅ 写入index_55成功！')
-        with open('docs/index_60', 'w', encoding='utf-8') as file:
+            print(f'✅ 写入index55成功！')
+        with open('docs/index60', 'w', encoding='utf-8') as file:
             file.write('\n'.join(vless_urls.split('\n')[:60]))
-            print(f'✅ 写入index_60成功！')
+            print(f'✅ 写入index60成功！')
             
-    if vless_urls_771:
-        with open('docs/f_771', 'w', encoding='utf-8') as file:
-            file.write(vless_urls_771)
-            print(f'✅ 写入f_771成功！')
-        with open('docs/f_771_5', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls_771.split('\n')[:5]))
-            print(f'✅ 写入f_771_5成功！')
-        with open('docs/f_771_10', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls_771.split('\n')[:10]))
-            print(f'✅ 写入f_771_10成功！')
-        with open('docs/f_771_15', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls_771.split('\n')[:15]))
-            print(f'✅ 写入f_771_15成功！')
-        with open('docs/f_771_20', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls_771.split('\n')[:20]))
-            print(f'✅ 写入f_771_20成功！')
-        with open('docs/f_771_25', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls_771.split('\n')[:25]))
-            print(f'✅ 写入f_771_25成功！')
-        with open('docs/f_771_30', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls_771.split('\n')[:30]))
-            print(f'✅ 写入f_771_30成功！')
+    if vless_urls_qq:
+        with open('docs/qq', 'w', encoding='utf-8') as file:
+            file.write(vless_urls_qq)
+            print(f'✅ 写入qq成功！')
+        with open('docs/qq5', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls_qq.split('\n')[:5]))
+            print(f'✅ 写入qq5成功！')
+        with open('docs/qq10', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls_qq.split('\n')[:10]))
+            print(f'✅ 写入qq10成功！')
+        with open('docs/qq15', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls_qq.split('\n')[:15]))
+            print(f'✅ 写入qq15成功！')
+        with open('docs/qq20', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls_qq.split('\n')[:20]))
+            print(f'✅ 写入qq20成功！')
+        with open('docs/qq25', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls_qq.split('\n')[:25]))
+            print(f'✅ 写入qq25成功！')
+        with open('docs/qq30', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls_qq.split('\n')[:30]))
+            print(f'✅ 写入qq30成功！')
             
-    if vless_urls_cfv:
-        with open('docs/f_cfv', 'w', encoding='utf-8') as file:
-            file.write(vless_urls_cfv)
-            print(f'✅ 写入f_cfv成功！')
-        with open('docs/f_cfv_5', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls_cfv.split('\n')[:5]))
-            print(f'✅ 写入f_cfv_5成功！')
-        with open('docs/f_cfv_10', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls_cfv.split('\n')[:10]))
-            print(f'✅ 写入f_cfv_10成功！')
-        with open('docs/f_cfv_15', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls_cfv.split('\n')[:15]))
-            print(f'✅ 写入f_cfv_15成功！')
+    if vless_urls_live:
+        with open('docs/live', 'w', encoding='utf-8') as file:
+            file.write(vless_urls_live)
+            print(f'✅ 写入live成功！')
+        with open('docs/live5', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls_live.split('\n')[:5]))
+            print(f'✅ 写入live5成功！')
+        with open('docs/live10', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls_live.split('\n')[:10]))
+            print(f'✅ 写入live10成功！')
+        with open('docs/live15', 'w', encoding='utf-8') as file:
+            file.write('\n'.join(vless_urls_live.split('\n')[:15]))
+            print(f'✅ 写入live15成功！')
 
