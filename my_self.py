@@ -157,7 +157,7 @@ if __name__ == "__main__":
 
     node_num = 65  # 改变节点数量后需注消exit（）运行一次
     
-    get_ips('771.qq-zxs.dns.army', QQ_TOKEN)
+    get_ips(QQ_HOST, QQ_TOKEN)
  #   get_ips()
 
     if unique_ips:
