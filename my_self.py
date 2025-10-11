@@ -41,7 +41,7 @@ def get_ips(token=''):
                 unique_ips.update(ip_matches)
                 print(f"❌ {list['domain']}: {e}")
             finally:
-                bulid_vless_urls(list['domain'].split(".", 1)[0], list['domain'].split(".", 1)[1], 'cfv.live', 'LIVE_CFV_TOKEN')
+                bulid_vless_urls(list['domain'].split(".", 1)[0], list['domain'].split(".", 1)[1], 'cfv.live-zxs.dns.army', 'LIVE_CFV_TOKEN')
         else:
             print(f"❌ {list['url']}未返回IP")
             
@@ -56,11 +56,11 @@ def update_A(host, domain=''):
            "Content-Type": "application/json"
         }
         r_record = 'records'
-        r_limit = 41
+        r_limit = 41  # 节点数量30（41-11）
         r_name = 'name'
         r_type = 'type'
         r_data = 'data'
-        r_vless = '771.qq'
+        r_worker = '771.qq-zxs.dns.army'
         r_token = 'QQ_771_TOKEN'
     elif host == 'dynu':
         api_token = os.getenv('DYNU_TOKEN')
@@ -70,11 +70,11 @@ def update_A(host, domain=''):
             "API-Key": api_token
         }
         r_record = 'record'
-        r_limit = 15
+        r_limit = 15  # 节点数量4（15-11）
         r_name = 'nodeName'
         r_type = 'recordType'
         r_data = 'ipv4Address'
-        r_vless = 'cfv.live'
+        r_worker = 'cfv.live-zxs.dns.army'
         r_token = 'LIVE_CFV_TOKEN'
     else:
         return
@@ -91,7 +91,7 @@ def update_A(host, domain=''):
     for domain_data in all_domains:
         if domain and domain != domain_data['name']: continue
         zoneID = domain_data['id']
-        name = domain_data['name'] # 和参数domain冲突，改名name
+        name = domain_data['name']  # 和参数domain冲突，改名name
         sub_name = 11
         url = f"{base_url}/{zoneID}/{r_record}"
         act_url = url
@@ -111,7 +111,7 @@ def update_A(host, domain=''):
             record_data = {
                 r_name: str(sub_name),
                 r_type: "A",
-                r_data: current_ip,  # 用变量暂存IP，方便后续引用
+                r_data: current_ip,
                 "ttl": 3600,
             }
 
@@ -128,7 +128,7 @@ def update_A(host, domain=''):
                 print(f"❌ {sub_name}.{name} 操作失败：{str(e)}")
             finally:
                 sub_name += 1
-                bulid_vless_urls(str(sub_name), name, r_vless, r_token)
+                bulid_vless_urls(str(sub_name), name, r_worker, r_token)
 
 def bulid_vless_urls(a, b, c, d):
     global vless_urls
@@ -136,11 +136,10 @@ def bulid_vless_urls(a, b, c, d):
     global vless_urls_crv
     ports = ['443','2053','2083','2087','2096','8443']
     port = random.choice(ports)
-    port = 443
+    port = 443  # 固定端口，随机端口请注销此项
     uuid = os.getenv(d)
     if not uuid: return
-    host = f'{c}-zxs.dns.army'
-    vless_url = f"vless://{uuid}@{a}.{b}:{port}?path=%2F%3Fed%3D2560&security=tls&encryption=none&host={host}&type=ws&sni={host}#{c[0:3]}-{b[0]}-{a}"
+    vless_url = f"vless://{uuid}@{a}.{b}:{port}?path=%2F%3Fed%3D2560&security=tls&encryption=none&host={c}&type=ws&sni={c}#{c[0:3]}-{b[0]}-{a}"
     vless_urls += f'{vless_url}\n'
     if c == '771.qq':
         vless_urls_771 += f'{vless_url}\n'
