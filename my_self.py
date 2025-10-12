@@ -14,7 +14,7 @@ def get_ips(worker='', worker_token=''):
         {'domain': 'cf-zxs.dns.navy', 'url': 'https://www.wetest.vip/page/cloudflare/total_v4.html'},
         {'domain': 'cf-zxs.v6.navy', 'url': 'https://api.uouin.com/cloudflare.html'},
         {'domain': 'ljk-clouflare.dns.army', 'url': 'https://addressesapi.090227.xyz/CloudFlareYes'},
-        {'domain': 'live-zxs.dns.army', 'url': 'https://vps789.com/openApi/cfIpApi'}
+        {'domain': 'live-zxs.dns.army', 'url': 'https://vps789.com/openApi/cfIpApi'},
         {'domain': 'qq-zxs.dns.army', 'url': 'https://vps789.com/openApi/cfIpTop20'}
     ]
     ip_pattern = r'\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b'
