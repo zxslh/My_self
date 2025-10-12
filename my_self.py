@@ -15,6 +15,7 @@ def get_ips(worker='', worker_token=''):
         {'domain': 'cf-zxs.v6.navy', 'url': 'https://api.uouin.com/cloudflare.html'},
         {'domain': 'ljk-clouflare.dns.army', 'url': 'https://addressesapi.090227.xyz/CloudFlareYes'},
         {'domain': 'live-zxs.dns.army', 'url': 'https://vps789.com/openApi/cfIpApi'}
+        {'domain': 'qq-zxs.dns.army', 'url': 'https://vps789.com/openApi/cfIpTop20'}
     ]
     ip_pattern = r'\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b'
 
@@ -70,7 +71,7 @@ def update_A(host, host_domain, host_token, worker, worker_token):
         return
 
     try:
-        response = requests.get(base_url, headers=headers)
+        response = requests.get(base_url, headers=headers, timeout=10)
         response.raise_for_status()
         all_domains = response.json()
         if isinstance(all_domains, dict): all_domains = all_domains['domains']
@@ -82,11 +83,11 @@ def update_A(host, host_domain, host_token, worker, worker_token):
         if host_domain and host_domain != domain_data['name']: continue
         zoneID = domain_data['id']
         domain = domain_data['name']
-        sub_name = 11
+        sub_name = 1
         url = f"{base_url}/{zoneID}/{r_record}"
         act_url = url
         try:
-            response = requests.get(url, headers=headers)
+            response = requests.get(url, headers=headers, timeout=10)
             response.raise_for_status()
             all_records = response.json()
             if isinstance(all_records, dict): all_records = all_records['dnsRecords']
@@ -98,7 +99,7 @@ def update_A(host, host_domain, host_token, worker, worker_token):
             if not current_ip: return
 
             record_data = {
-                r_name: str(sub_name),
+                r_name: f'{sub_name:02d}',
                 r_type: "A",
                 r_data: current_ip,
                 "ttl": 3600,
@@ -107,23 +108,23 @@ def update_A(host, host_domain, host_token, worker, worker_token):
 
             try:
                 for record in all_records:
-                    if record[r_name] == str(sub_name) and record[r_type] == "A":
+                    if record[r_name] == f'{sub_name:02d}' and record[r_type] == "A":
                         act_url = f"{url}/{record['id']}"
                         if host == 'dynv6': act = 'patch'
                         break
                 update_response = getattr(requests, act)(act_url, headers=headers, data=json.dumps(record_data))
                 update_response.raise_for_status()
-                print(f"✅ 成功：{sub_name}.{domain} → {current_ip}")
-                bulid_vless_urls(str(sub_name), domain, worker, worker_token)
+                print(f"✅ 成功：{sub_name:02d}.{domain} → {current_ip}")
+                bulid_vless_urls(f'{sub_name:02d}', domain, worker, worker_token)
                 sub_name += 1
                 node_num -= 1
             except Exception as e:
                 if "501 S" not in str(e) and "401 E" not in str(e): 
-                    print(f"❌ {sub_name}.{domain} 操作失败：{str(e)}")
+                    print(f"❌ {sub_name:02d}.{domain} 操作失败：{str(e)}")
                 break
                 
 def bulid_vless_urls(a, b, c, d):
-    if True: return  # 需要生成文件注销此行
+ #   if True: return  # 需要生成文件注销此行
     global vless_urls
     global vless_urls_qq
     global vless_urls_live
@@ -151,7 +152,7 @@ if __name__ == "__main__":
     DYNV6_domain = 'cf-zxs.dns.army'
     DYNU_domain = ''
 
-    node_num = 65
+    node_num = 70
     
     get_ips(LIVE_HOST, LIVE_TOKEN)
  #   get_ips()
