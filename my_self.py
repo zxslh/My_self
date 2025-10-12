@@ -28,7 +28,7 @@ def get_ips(worker='', worker_token=''):
             print(f"❌ 失败: {str(e)}")
         if worker and worker_token:
             bulid_vless_urls(list['domain'].split(".", 1)[0], list['domain'].split(".", 1)[1], worker, worker_token)
-	        node_num -= 1
+            node_num -= 1
             try:
                 ipv4 = ip_matches[0]
                 update_url = f"http://dynv6.com/api/update?token={DYNV6_TOKEN}&hostname={list['domain']}&ipv4={ipv4}"
