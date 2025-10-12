@@ -123,6 +123,7 @@ def update_A(host, host_domain, host_token, worker, worker_token):
                 break
                 
 def bulid_vless_urls(a, b, c, d):
+	if True: return  # 需要生成文件注销此行
     global vless_urls
     global vless_urls_qq
     global vless_urls_live
@@ -150,7 +151,7 @@ if __name__ == "__main__":
     DYNV6_domain = 'cf-zxs.dns.army'
     DYNU_domain = ''
 
-    node_num = 65  # 改变节点数量后需注消exit（）运行一次
+    node_num = 65
     
     get_ips(LIVE_HOST, LIVE_TOKEN)
  #   get_ips()
@@ -163,7 +164,6 @@ if __name__ == "__main__":
         with open('docs/index.html', 'w', encoding='utf-8') as file:
             file.write(vless_urls)
             print(f'✅ 写入index成功！')
-        exit()
         with open('docs/index5', 'w', encoding='utf-8') as file:
             file.write('\n'.join(vless_urls.split('\n')[:5]))
             print(f'✅ 写入index5成功！')
