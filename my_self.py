@@ -26,7 +26,7 @@ def get_ips(worker='', worker_token=''):
             unique_ips.update(ip_matches)
         except Exception as e:
             print(f"❌ 失败: {str(e)}")
-		if worker and worker_token
+		if worker and worker_token:
             bulid_vless_urls(list['domain'].split(".", 1)[0], list['domain'].split(".", 1)[1], worker, worker_token)
 	        node_num -= 1
 			try:
