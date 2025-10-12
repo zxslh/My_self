@@ -2,7 +2,7 @@ name: update Dynv6&Dynu A
 
 on:
   schedule:
-    - cron: '0 */3 * * *' # 每3小时运行一次
+    - cron: '20 03 * * 5' # 每3小时运行一次
   workflow_dispatch: # 允许手动触发
 
 jobs:
