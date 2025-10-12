@@ -26,20 +26,20 @@ def get_ips(worker='', worker_token=''):
             unique_ips.update(ip_matches)
         except Exception as e:
             print(f"❌ 失败: {str(e)}")
-		if worker and worker_token:
+        if worker and worker_token:
             bulid_vless_urls(list['domain'].split(".", 1)[0], list['domain'].split(".", 1)[1], worker, worker_token)
 	        node_num -= 1
-			try:
-				ipv4 = ip_matches[0]
-				update_url = f"http://dynv6.com/api/update?token={DYNV6_TOKEN}&hostname={list['domain']}&ipv4={ipv4}"
-				response = requests.get(update_url, timeout=10).text.strip()
-				if any(keyword in response for keyword in ["good", "Ok", "nochg", "updated", "unchanged"]):
-					print(f"✅ {list['domain']}：{response}")
-					unique_ips.discard(ipv4)
-				else:
-					raise Exception({response})
-			except Exception as e:
-				print(f"❌ {list['domain']}: {str(e)}")
+            try:
+                ipv4 = ip_matches[0]
+                update_url = f"http://dynv6.com/api/update?token={DYNV6_TOKEN}&hostname={list['domain']}&ipv4={ipv4}"
+                response = requests.get(update_url, timeout=10).text.strip()
+                if any(keyword in response for keyword in ["good", "Ok", "nochg", "updated", "unchanged"]):
+                    print(f"✅ {list['domain']}：{response}")
+                    unique_ips.discard(ipv4)
+                else:
+                    raise Exception({response})
+            except Exception as e:
+                print(f"❌ {list['domain']}: {str(e)}")
             
 def update_A(host, host_domain, host_token, worker, worker_token):
 
