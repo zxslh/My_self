@@ -16,7 +16,7 @@ def get_ips(worker='', worker_token=''):
         {'domain': 'ljk-clouflare.dns.army', 'url': 'https://addressesapi.090227.xyz/CloudFlareYes'},
         {'domain': 'live-zxs.dns.army', 'url': 'https://vps789.com/openApi/cfIpApi'},
         {'domain': 'qq-zxs.dns.army', 'url': 'https://vps789.com/openApi/cfIpTop20'},
-        {'domain': 'qq-zxs.dns.army', 'url': 'https://raw.githubusercontent.com/NiREvil/vless/refs/heads/main/sub/Cf-ipv4.json'},
+        {'domain': 'msn-zxs.dns.army', 'url': 'https://raw.githubusercontent.com/NiREvil/vless/refs/heads/main/sub/Cf-ipv4.json'},
     ]
     ip_pattern = r'\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b'
 
