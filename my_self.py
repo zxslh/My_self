@@ -123,8 +123,7 @@ def update_A(host, host_domain, host_token, worker, worker_token):
                 break
                 
 def bulid_vless_urls(a, b, c, d):
-	if True:
-		return  # 需要生成文件注销此行
+    if True: return  # 需要生成文件注销此行
     global vless_urls
     global vless_urls_qq
     global vless_urls_live
