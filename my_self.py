@@ -19,33 +19,27 @@ def get_ips(worker='', worker_token=''):
     ip_pattern = r'\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b'
 
     for list in update_list:
+        ip_matches = ''
         try:
             response = requests.get(list['url'], timeout=10).text
             ip_matches = re.findall(ip_pattern, response, re.IGNORECASE)
+            unique_ips.update(ip_matches)
         except Exception as e:
             print(f"❌ 失败: {str(e)}")
-            continue
-        if ip_matches:
-            if not worker:
-                unique_ips.update(ip_matches)
-                continue
-            try:
-                ipv4 = ip_matches[0]
-                update_url = f"http://dynv6.com/api/update?token={DYNV6_TOKEN}&hostname={list['domain']}&ipv4={ipv4}"
-                response = requests.get(update_url, timeout=10).text.strip()
-                if any(keyword in response for keyword in ["good", "Ok", "nochg", "updated", "unchanged"]):
-                    print(f"✅ {list['domain']}：{response}")
-                    unique_ips.update(ip_matches[1:])
-                else:
-                    raise Exception({response})
-            except Exception as e:
-                unique_ips.update(ip_matches)
-                print(f"❌ {list['domain']}: {str(e)}")
-            finally:
-                bulid_vless_urls(list['domain'].split(".", 1)[0], list['domain'].split(".", 1)[1], worker, worker_token)
-                node_num -= 1
-        else:
-            print(f"❌ {list['url']}未返回IP")
+		if worker and worker_token
+            bulid_vless_urls(list['domain'].split(".", 1)[0], list['domain'].split(".", 1)[1], worker, worker_token)
+	        node_num -= 1
+			try:
+				ipv4 = ip_matches[0]
+				update_url = f"http://dynv6.com/api/update?token={DYNV6_TOKEN}&hostname={list['domain']}&ipv4={ipv4}"
+				response = requests.get(update_url, timeout=10).text.strip()
+				if any(keyword in response for keyword in ["good", "Ok", "nochg", "updated", "unchanged"]):
+					print(f"✅ {list['domain']}：{response}")
+					unique_ips.discard(ipv4)
+				else:
+					raise Exception({response})
+			except Exception as e:
+				print(f"❌ {list['domain']}: {str(e)}")
             
 def update_A(host, host_domain, host_token, worker, worker_token):
 
