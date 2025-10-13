@@ -99,8 +99,8 @@ def update_A(host, host_domain, host_token, worker, worker_token):
                         act_url = f"{url}/{record['id']}"
                         if host == 'dynv6': act = 'patch'
                         break
-                #update_response = getattr(requests, act)(act_url, headers=headers, data=json.dumps(record_data))
-                #update_response.raise_for_status()
+                update_response = getattr(requests, act)(act_url, headers=headers, data=json.dumps(record_data))
+                update_response.raise_for_status()
                 print(f"✅ 成功：{sub_name:02d}.{domain} → {current_ip}")
                 bulid_vless_urls(f'{sub_name:02d}', domain, worker, worker_token)
                 sub_name += 1
