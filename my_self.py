@@ -113,17 +113,11 @@ def update_A(host, host_domain, host_token, worker, worker_token):
 def bulid_vless_urls(a, b, c, d):
  #   if True: return  # 需要生成文件注销此行
     global vless_urls
-    global vless_urls_qq
-    global vless_urls_live
     ports = ['443','2053','2083','2087','2096','8443']
     port = random.choice(ports)
     port = 443  # 固定端口，随机端口请注销此项
     vless_url = f"vless://{d}@{a}.{b}:{port}?path=%2F%3Fed%3D2560&security=tls&encryption=none&host={c}&type=ws&sni={c}#{c[0:3]}-{b[0]}-{a}"
     vless_urls += f'{vless_url}\n'
-    if c == QQ_HOST:
-        vless_urls_qq += f'{vless_url}\n'
-    if c == LIVE_HOST:
-        vless_urls_live += f'{vless_url}\n'
             
 if __name__ == "__main__":
     vless_urls = ''
