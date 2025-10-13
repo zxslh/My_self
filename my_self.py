@@ -147,8 +147,8 @@ if __name__ == "__main__":
     DYNU_TOKEN = os.getenv('DYNU_TOKEN')
     QQ_TOKEN = os.getenv('QQ_771_TOKEN')
     QQ_HOST = '771.qq-zxs.dns.army'
-    LIVE_TOKEN = os.getenv('LIVE_F02_TOKEN')
-    LIVE_HOST = 'f02.live-zxs.dns.army'
+    LIVE_TOKEN = ''
+    LIVE_HOST = ''
     DYNV6_domain = 'cf-zxs.dns.army'
     DYNU_domain = ''
 
@@ -158,7 +158,7 @@ if __name__ == "__main__":
  #   get_ips()
 
     if unique_ips:
-        update_A('dynu', DYNU_domain, DYNU_TOKEN, LIVE_HOST, LIVE_TOKEN)  # 因DYNU有限制，先执行，剩余使用DYNV6
+       # update_A('dynu', DYNU_domain, DYNU_TOKEN, LIVE_HOST, LIVE_TOKEN)  # 因DYNU有限制，先执行，剩余使用DYNV6
         update_A('dynv6', DYNV6_domain, DYNV6_TOKEN, QQ_HOST, QQ_TOKEN)
 
     if vless_urls:
