@@ -80,7 +80,7 @@ def update_A(host, host_domain, host_token, worker, worker_token):
             continue
         while int(node_num) > 0:
             current_ip = unique_ips.pop()
-            if not current_ip: return
+           # if not current_ip: return
 
             record_data = {
                 r_name: f'{sub_name:02d}',
@@ -96,9 +96,9 @@ def update_A(host, host_domain, host_token, worker, worker_token):
                         act_url = f"{url}/{record['id']}"
                         if host == 'dynv6': act = 'patch'
                         break
-                update_response = getattr(requests, act)(act_url, headers=headers, data=json.dumps(record_data))
-                update_response.raise_for_status()
-                print(f"✅ 成功：{sub_name:02d}.{domain} → {current_ip}")
+                #update_response = getattr(requests, act)(act_url, headers=headers, data=json.dumps(record_data))
+                #update_response.raise_for_status()
+                #print(f"✅ 成功：{sub_name:02d}.{domain} → {current_ip}")
                 bulid_vless_urls(f'{sub_name:02d}', domain, worker, worker_token)
                 sub_name += 1
                 node_num -= 1
@@ -137,9 +137,9 @@ if __name__ == "__main__":
     DYNU_domain = ''
 
     node_num = 50
-    get_ips()
+    #get_ips()
 
-    if unique_ips:
+    if not unique_ips:
        # update_A('dynu', DYNU_domain, DYNU_TOKEN, LIVE_HOST, LIVE_TOKEN)  # 因DYNU有限制，先执行，剩余使用DYNV6
         update_A('dynv6', DYNV6_domain, DYNV6_TOKEN, QQ_HOST, QQ_TOKEN)
 
