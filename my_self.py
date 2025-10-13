@@ -19,9 +19,8 @@ def get_ips():
     ip_pattern = r'\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b'
 
     for list in update_list:
-        ip_matches = ''
         try:
-            response = requests.get(list['url'], timeout=10).text
+            response = requests.get(list, timeout=10).text
             ip_matches = re.findall(ip_pattern, response, re.IGNORECASE)
             unique_ips.update(ip_matches)
         except Exception as e:
