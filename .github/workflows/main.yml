@@ -46,7 +46,7 @@ jobs:
         git config --local user.email "actions@github.com"
         git config --local user.name "GitHub Action"
         if [ -n "$(git status --porcelain)" ]; then
-          git add docs/index.html docs/qq docs/live docs/index5 docs/index10 docs/index15 docs/index20 docs/index25 docs/index30 docs/index35 docs/index40 docs/index45 docs/index50 docs/index55 docs/index60 docs/qq5 docs/qq10 docs/qq15 docs/qq20 docs/qq25 docs/qq30 docs/live5 docs/live10 docs/live15
+          git add docs/index.html docs/index5 docs/index10 docs/index15 docs/index20 docs/index25 docs/index30 docs/index35 docs/index40 docs/index45 docs/index50
           git commit -m "Automatic update"
           git push
         else
