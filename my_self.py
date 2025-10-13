@@ -4,18 +4,17 @@ import re
 import os
 import random
 
-def get_ips(worker='', worker_token=''):
+def get_ips():
     global unique_ips
-    global node_num
     update_list = [
-        {'domain': 'cf-zxs.dynv6.net', 'url': 'https://ip.164746.xyz'},
-        {'domain': 'cf-zxs.v6.army', 'url': 'https://ipdb.api.030101.xyz/?type=bestcf&country=true'},
-        {'domain': 'cf-zxs.dns.army', 'url': 'https://ip.164746.xyz/ipTop10.html'},
-        {'domain': 'cf-zxs.dns.navy', 'url': 'https://www.wetest.vip/page/cloudflare/total_v4.html'},
-        {'domain': 'ljk-clouflare.dns.army', 'url': 'https://addressesapi.090227.xyz/CloudFlareYes'},
-        {'domain': 'live-zxs.dns.army', 'url': 'https://vps789.com/openApi/cfIpApi'},
-        {'domain': 'qq-zxs.dns.army', 'url': 'https://vps789.com/openApi/cfIpTop20'},
-        {'domain': 'msn-zxs.dns.army', 'url': 'https://raw.githubusercontent.com/NiREvil/vless/refs/heads/main/sub/Cf-ipv4.json'},
+        'https://ip.164746.xyz',
+        'https://ipdb.api.030101.xyz/?type=bestcf&country=true',
+        'https://ip.164746.xyz/ipTop10.html',
+        'https://www.wetest.vip/page/cloudflare/total_v4.html',
+        'https://addressesapi.090227.xyz/CloudFlareYes'},
+        'https://vps789.com/openApi/cfIpApi',
+        'https://vps789.com/openApi/cfIpTop20',
+        'https://raw.githubusercontent.com/NiREvil/vless/refs/heads/main/sub/Cf-ipv4.json',
     ]
     ip_pattern = r'\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b'
 
@@ -27,21 +26,7 @@ def get_ips(worker='', worker_token=''):
             unique_ips.update(ip_matches)
         except Exception as e:
             print(f"❌ 失败: {str(e)}")
-        if worker and worker_token:
-            bulid_vless_urls(list['domain'].split(".", 1)[0], list['domain'].split(".", 1)[1], worker, worker_token)
-            node_num -= 1
-            try:
-                ipv4 = ip_matches[0]
-                update_url = f"http://dynv6.com/api/update?token={DYNV6_TOKEN}&hostname={list['domain']}&ipv4={ipv4}"
-                response = requests.get(update_url, timeout=10).text.strip()
-                if any(keyword in response for keyword in ["good", "Ok", "nochg", "updated", "unchanged"]):
-                    print(f"✅ {list['domain']}：{response}")
-                    unique_ips.discard(ipv4)
-                else:
-                    raise Exception({response})
-            except Exception as e:
-                print(f"❌ {list['domain']}: {str(e)}")
-            
+
 def update_A(host, host_domain, host_token, worker, worker_token):
 
     act = 'post'
@@ -152,10 +137,8 @@ if __name__ == "__main__":
     DYNV6_domain = 'cf-zxs.dns.army'
     DYNU_domain = ''
 
-    node_num = 70
-    
-    get_ips(LIVE_HOST, LIVE_TOKEN)
- #   get_ips()
+    node_num = 50
+    get_ips()
 
     if unique_ips:
        # update_A('dynu', DYNU_domain, DYNU_TOKEN, LIVE_HOST, LIVE_TOKEN)  # 因DYNU有限制，先执行，剩余使用DYNV6
@@ -195,47 +178,4 @@ if __name__ == "__main__":
         with open('docs/index50', 'w', encoding='utf-8') as file:
             file.write('\n'.join(vless_urls.split('\n')[:50]))
             print(f'✅ 写入index50成功！')
-        with open('docs/index55', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls.split('\n')[:55]))
-            print(f'✅ 写入index55成功！')
-        with open('docs/index60', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls.split('\n')[:60]))
-            print(f'✅ 写入index60成功！')
-            
-    if vless_urls_qq:
-        with open('docs/qq', 'w', encoding='utf-8') as file:
-            file.write(vless_urls_qq)
-            print(f'✅ 写入qq成功！')
-        with open('docs/qq5', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls_qq.split('\n')[:5]))
-            print(f'✅ 写入qq5成功！')
-        with open('docs/qq10', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls_qq.split('\n')[:10]))
-            print(f'✅ 写入qq10成功！')
-        with open('docs/qq15', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls_qq.split('\n')[:15]))
-            print(f'✅ 写入qq15成功！')
-        with open('docs/qq20', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls_qq.split('\n')[:20]))
-            print(f'✅ 写入qq20成功！')
-        with open('docs/qq25', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls_qq.split('\n')[:25]))
-            print(f'✅ 写入qq25成功！')
-        with open('docs/qq30', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls_qq.split('\n')[:30]))
-            print(f'✅ 写入qq30成功！')
-            
-    if vless_urls_live:
-        with open('docs/live', 'w', encoding='utf-8') as file:
-            file.write(vless_urls_live)
-            print(f'✅ 写入live成功！')
-        with open('docs/live5', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls_live.split('\n')[:5]))
-            print(f'✅ 写入live5成功！')
-        with open('docs/live10', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls_live.split('\n')[:10]))
-            print(f'✅ 写入live10成功！')
-        with open('docs/live15', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls_live.split('\n')[:15]))
-            print(f'✅ 写入live15成功！')
 
