@@ -12,7 +12,6 @@ def get_ips(worker='', worker_token=''):
         {'domain': 'cf-zxs.v6.army', 'url': 'https://ipdb.api.030101.xyz/?type=bestcf&country=true'},
         {'domain': 'cf-zxs.dns.army', 'url': 'https://ip.164746.xyz/ipTop10.html'},
         {'domain': 'cf-zxs.dns.navy', 'url': 'https://www.wetest.vip/page/cloudflare/total_v4.html'},
-        {'domain': 'cf-zxs.v6.navy', 'url': 'https://api.uouin.com/cloudflare.html'},
         {'domain': 'ljk-clouflare.dns.army', 'url': 'https://addressesapi.090227.xyz/CloudFlareYes'},
         {'domain': 'live-zxs.dns.army', 'url': 'https://vps789.com/openApi/cfIpApi'},
         {'domain': 'qq-zxs.dns.army', 'url': 'https://vps789.com/openApi/cfIpTop20'},
