@@ -79,8 +79,11 @@ def update_A(host, host_domain, host_token, worker, worker_token):
             print(f"❌ {domain} 获取domain记录信息失败：{str(e)}")
             continue
         while int(node_num) > 0:
-            current_ip = unique_ips.pop()
-            if not current_ip: return
+            try:
+                current_ip = unique_ips.pop()
+            except Exception as e:
+                print(f"❌ CFIP地址不够，缺{nod_num}个")
+                return
 
             record_data = {
                 r_name: f'{sub_name:02d}',
