@@ -80,7 +80,7 @@ def update_A(host, host_domain, host_token, worker, worker_token):
             continue
         while int(node_num) > 0:
             current_ip = unique_ips.pop()
-           # if not current_ip: return
+            if not current_ip: return
 
             record_data = {
                 r_name: f'{sub_name:02d}',
@@ -137,7 +137,7 @@ if __name__ == "__main__":
     DYNU_domain = ''
 
     node_num = 50
-    #get_ips()
+    get_ips()
 
     if not unique_ips:
        # update_A('dynu', DYNU_domain, DYNU_TOKEN, LIVE_HOST, LIVE_TOKEN)  # 因DYNU有限制，先执行，剩余使用DYNV6
