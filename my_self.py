@@ -71,7 +71,7 @@ def update_A(host, host_domain, host_token, worker, worker_token):
         return
 
     try:
-        response = requests.get(base_url, headers=headers, timeout=10)
+        response = requests.get(base_url, headers=headers)
         response.raise_for_status()
         all_domains = response.json()
         if isinstance(all_domains, dict): all_domains = all_domains['domains']
@@ -87,7 +87,7 @@ def update_A(host, host_domain, host_token, worker, worker_token):
         url = f"{base_url}/{zoneID}/{r_record}"
         act_url = url
         try:
-            response = requests.get(url, headers=headers, timeout=10)
+            response = requests.get(url, headers=headers)
             response.raise_for_status()
             all_records = response.json()
             if isinstance(all_records, dict): all_records = all_records['dnsRecords']
