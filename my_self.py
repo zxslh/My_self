@@ -11,7 +11,7 @@ def get_ips():
         'https://ipdb.api.030101.xyz/?type=bestcf&country=true',
         'https://ip.164746.xyz/ipTop10.html',
         'https://www.wetest.vip/page/cloudflare/total_v4.html',
-        'https://addressesapi.090227.xyz/CloudFlareYes'},
+        'https://addressesapi.090227.xyz/CloudFlareYes',
         'https://vps789.com/openApi/cfIpApi',
         'https://vps789.com/openApi/cfIpTop20',
         'https://raw.githubusercontent.com/NiREvil/vless/refs/heads/main/sub/Cf-ipv4.json',
