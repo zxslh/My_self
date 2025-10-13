@@ -140,7 +140,7 @@ if __name__ == "__main__":
     node_num = 50
     get_ips()
 
-    if not unique_ips:
+    if unique_ips:
        # update_A('dynu', DYNU_domain, DYNU_TOKEN, LIVE_HOST, LIVE_TOKEN)  # 因DYNU有限制，先执行，剩余使用DYNV6
         update_A('dynv6', DYNV6_domain, DYNV6_TOKEN, QQ_HOST, QQ_TOKEN)
 
