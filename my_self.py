@@ -101,7 +101,7 @@ def update_A(host, host_domain, host_token, worker, worker_token):
                         break
                 #update_response = getattr(requests, act)(act_url, headers=headers, data=json.dumps(record_data))
                 #update_response.raise_for_status()
-                #print(f"✅ 成功：{sub_name:02d}.{domain} → {current_ip}")
+                print(f"✅ 成功：{sub_name:02d}.{domain} → {current_ip}")
                 bulid_vless_urls(f'{sub_name:02d}', domain, worker, worker_token)
                 sub_name += 1
                 node_num -= 1
@@ -127,8 +127,6 @@ def bulid_vless_urls(a, b, c, d):
             
 if __name__ == "__main__":
     vless_urls = ''
-    vless_urls_qq = ''
-    vless_urls_live = ''
     unique_ips = set()
     DYNV6_TOKEN = os.getenv('DYNV6_TOKEN')
     DYNU_TOKEN = os.getenv('DYNU_TOKEN')
