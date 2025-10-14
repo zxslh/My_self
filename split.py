@@ -12,8 +12,6 @@ def test_ip_connection(ip, port, timeout=3):
     :param timeout: 超时时间（秒）
     :return: (bool, str)：连接结果（True/False）、状态描述
     """
-    if not port: port = 443
-    
     try:
         # 创建TCP socket
         if '.' in ip:
@@ -44,7 +42,9 @@ def extract_ip_port_name(s):
         return None, None, None
     ip = match.group('ip')
     ip = ip[1:-1] if ip and ip.startswith('[') and ip.endswith(']') else ip
-    return ip, match.group('port'), match.group('name')
+    port = match.group('port')
+    if not port: port = 443
+    return ip, port, match.group('name')
 
 # 1. 读取文件并解析
 ip_list = []
@@ -70,6 +70,7 @@ if not lines:
 else:
     # 解析每行数据
     for line_num, line in enumerate(lines, 1):
+        
         ip, port, name = extract_ip_port_name(line)
         success, msg, timeout = test_ip_connection(ip, port)
         if success:
