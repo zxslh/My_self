@@ -29,10 +29,10 @@ except Exception as e:
     exit(1)
 
 # 检查goodips文件是否为空
+ipv4_list = []
+ipv6_list = []
 if not lines:
     print(f"警告：{goodip_path}文件为空，生成空JSON")
-    ipv4_list = []
-    ipv6_list = []
 else:
     # 解析每行数据
     for line_num, line in enumerate(lines, 1):
