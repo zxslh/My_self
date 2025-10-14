@@ -64,6 +64,8 @@ except Exception as e:
 
 ipv4_list = []
 ipv6_list = []
+bad_ips = []
+good_ips = []
 # 检查goodips文件是否为空
 if not lines:
     print(f"警告：{goodip_path}文件为空，生成空JSON")
@@ -73,17 +75,23 @@ else:
         ip, port, name = extract_ip_port_name(line)
         success, msg, timeout = test_ip_connection(ip, port)
         if success:
+            good_ips.append(line)
             if ':' in ip:
                 ipv6_list.append({"ip": ip, "port": port, "name": name, 'timeout': timeout})
             else:
                 ipv4_list.append({"ip": ip, "port": port, "name": name, 'timeout': timeout})
         else:
+            bad_ips.append(line)
             print(f'{ip}:{port}：{msg}')
             
 ip_dict = {'ipv4': ipv4_list, 'ipv6': ipv6_list}
 
 # 2. 保存为JSON文件（确保无论是否有数据都生成文件）
 try:
+    with open('good_ips', 'w', encoding='utf-8') as f:
+        f.write(good_ips)
+    with open('bad_ips', 'w', encoding='utf-8') as f:
+        f.write(bad_ips)
     with open('ip_info.json', 'w', encoding='utf-8') as f:
         json.dump(ip_dict, f, indent=2, ensure_ascii=False)
     print(f"JSON文件生成成功！路径：{os.path.abspath('ip_info.json')}，有效数据条数：{len(ip_list)}")
