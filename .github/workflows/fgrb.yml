@@ -5,9 +5,7 @@ on:
   push:
     branches: [ main ]  # 当代码推送到main分支时触发
     paths:              # 仅当以下文件变更时触发（优化性能）
-      - 'good_ips'
       - 'bad_ips'
-      - '.github/workflows/ip-filter.yml'
  # schedule:
   #  - cron: '0 0 * * *'  # 每日UTC时间0点定时触发（可选）
   workflow_dispatch:      # 允许手动在GitHub界面触发（推荐保留）
