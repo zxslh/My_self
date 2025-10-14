@@ -10,7 +10,7 @@ on:
   # 3. 当goodip文件被推送到main分支时触发
   push:
     branches: [ main ]
-    paths: [ 'goodip' ]
+    paths: [ 'goodips' ]
 
 jobs:
   parse-ip:
