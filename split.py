@@ -64,8 +64,8 @@ except Exception as e:
 
 ipv4_list = []
 ipv6_list = []
-bad_ips = []
-good_ips = []
+bad_ips = ''
+good_ips = ''
 # 检查goodips文件是否为空
 if not lines:
     print(f"警告：{goodip_path}文件为空，生成空JSON")
@@ -75,13 +75,13 @@ else:
         ip, port, name = extract_ip_port_name(line)
         success, msg, timeout = test_ip_connection(ip, port)
         if success:
-            good_ips.append(line)
+            good_ips += f'{line}\n}
             if ':' in ip:
                 ipv6_list.append({"ip": ip, "port": port, "name": name, 'timeout': timeout})
             else:
                 ipv4_list.append({"ip": ip, "port": port, "name": name, 'timeout': timeout})
         else:
-            bad_ips.append(line)
+            bad_ips += f'{line}\n}
             print(f'{ip}:{port}：{msg}')
             
 ip_dict = {'ipv4': ipv4_list, 'ipv6': ipv6_list}
