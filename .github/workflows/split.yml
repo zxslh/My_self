@@ -34,7 +34,7 @@ jobs:
 
       # 步骤4：执行Python脚本解析IP（需确保脚本已在仓库中，即之前的完整代码）
       - name: 解析goodip文件
-        run: python ip_parser.py  # 假设之前的完整代码保存为ip_parser.py
+        run: python split.py  # 假设之前的完整代码保存为split.py
 
       # 步骤5：将生成的JSON文件提交并推回仓库
       - name: 提交JSON文件到仓库
