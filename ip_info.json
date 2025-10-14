@@ -4,1189 +4,1189 @@
       "ip": "172.64.78.32",
       "port": "443",
       "name": "CT-ATL",
-      "timeout": 51.0
+      "timeout": 66
     },
     {
       "ip": "172.64.78.216",
       "port": "443",
       "name": "CT-ORD",
-      "timeout": 32.0
+      "timeout": 20
     },
     {
       "ip": "172.64.78.24",
       "port": "443",
       "name": "CT-ORD",
-      "timeout": 32.0
+      "timeout": 69
     },
     {
       "ip": "104.21.15.68",
       "port": "443",
       "name": "CT-CDG",
-      "timeout": 2.0
+      "timeout": 10
     },
     {
       "ip": "104.21.196.82",
       "port": "443",
       "name": "CT-CDG",
-      "timeout": 2.0
+      "timeout": 9
     },
     {
       "ip": "162.159.160.78",
       "port": "443",
       "name": "CT-CDG",
-      "timeout": 86.0
+      "timeout": 135
     },
     {
       "ip": "172.67.182.70",
       "port": "443",
       "name": "CT-CDG",
-      "timeout": 2.0
+      "timeout": 9
     },
     {
       "ip": "172.67.229.44",
       "port": "443",
       "name": "CT-CDG",
-      "timeout": 2.0
+      "timeout": 10
     },
     {
       "ip": "172.64.78.143",
       "port": "443",
       "name": "CT-EWR",
-      "timeout": 49.0
+      "timeout": 20
     },
     {
       "ip": "170.114.52.44",
       "port": "443",
       "name": "CT-FRA",
-      "timeout": 2.0
+      "timeout": 3
     },
     {
       "ip": "141.101.90.101",
       "port": "443",
       "name": "CT-FRA",
-      "timeout": 2.0
+      "timeout": 6
     },
     {
       "ip": "104.16.44.19",
       "port": "443",
       "name": "CT-HKG",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "104.16.45.2",
       "port": "443",
       "name": "CT-HKG",
-      "timeout": 3.0
+      "timeout": 9
     },
     {
       "ip": "104.16.208.99",
       "port": 443,
       "name": "CT-HKG",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "104.17.137.8",
       "port": 443,
       "name": "CT-HKG",
-      "timeout": 3.0
+      "timeout": 2
     },
     {
       "ip": "104.18.34.146",
       "port": 443,
       "name": "CT-HKG",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "104.20.44.21",
       "port": "443",
       "name": "CT-IAD",
-      "timeout": 3.0
+      "timeout": 9
     },
     {
       "ip": "104.24.0.146",
       "port": "443",
       "name": "CT-IAD",
-      "timeout": 3.0
+      "timeout": 9
     },
     {
       "ip": "104.24.150.3",
       "port": "443",
       "name": "CT-IAD",
-      "timeout": 3.0
+      "timeout": 10
     },
     {
       "ip": "104.25.5.172",
       "port": "443",
       "name": "CT-IAD",
-      "timeout": 3.0
+      "timeout": 9
     },
     {
       "ip": "104.27.192.83",
       "port": "443",
       "name": "CT-IAD",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "104.27.195.101",
       "port": "443",
       "name": "CT-IAD",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "104.16.113.38",
       "port": "443",
       "name": "CT-LAX",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "104.16.115.188",
       "port": "443",
       "name": "CT-LAX",
-      "timeout": 3.0
+      "timeout": 10
     },
     {
       "ip": "104.18.114.12",
       "port": "443",
       "name": "CT-LAX",
-      "timeout": 3.0
+      "timeout": 2
     },
     {
       "ip": "104.18.119.45",
       "port": "443",
       "name": "CT-LAX",
-      "timeout": 3.0
+      "timeout": 2
     },
     {
       "ip": "104.19.138.22",
       "port": "443",
       "name": "CT-LAX",
-      "timeout": 2.0
+      "timeout": 10
     },
     {
       "ip": "162.159.44.98",
       "port": "443",
       "name": "CT-LAX",
-      "timeout": 21.0
+      "timeout": 9
     },
     {
       "ip": "162.159.242.19",
       "port": "443",
       "name": "CT-LAX",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "162.159.38.140",
       "port": "443",
       "name": "CT-LAX",
-      "timeout": 23.0
+      "timeout": 9
     },
     {
       "ip": "162.159.246.183",
       "port": "443",
       "name": "CT-LAX",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "104.21.226.224",
       "port": "443",
       "name": "CT-LAX",
-      "timeout": 23.0
+      "timeout": 19
     },
     {
       "ip": "162.159.255.104",
       "port": "443",
       "name": "CT-LAX",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "104.19.134.112",
       "port": "443",
       "name": "CT-LAX",
-      "timeout": 2.0
+      "timeout": 9
     },
     {
       "ip": "104.21.18.241",
       "port": "443",
       "name": "CT-LHR",
-      "timeout": 2.0
+      "timeout": 10
     },
     {
       "ip": "104.21.27.126",
       "port": "443",
       "name": "CT-LHR",
-      "timeout": 2.0
+      "timeout": 9
     },
     {
       "ip": "104.21.54.109",
       "port": "443",
       "name": "CT-LHR",
-      "timeout": 1.0
+      "timeout": 11
     },
     {
       "ip": "104.21.56.64",
       "port": "443",
       "name": "CT-LHR",
-      "timeout": 2.0
+      "timeout": 10
     },
     {
       "ip": "104.21.62.231",
       "port": "443",
       "name": "CT-LHR",
-      "timeout": 3.0
+      "timeout": 9
     },
     {
       "ip": "104.21.67.69",
       "port": "443",
       "name": "CT-LHR",
-      "timeout": 3.0
+      "timeout": 10
     },
     {
       "ip": "104.21.217.146",
       "port": "443",
       "name": "CT-LHR",
-      "timeout": 3.0
+      "timeout": 9
     },
     {
       "ip": "104.21.198.66",
       "port": "443",
       "name": "CT-LHR",
-      "timeout": 2.0
+      "timeout": 10
     },
     {
       "ip": "104.21.215.194",
       "port": "443",
       "name": "CT-LHR",
-      "timeout": 3.0
+      "timeout": 9
     },
     {
       "ip": "172.67.143.16",
       "port": "443",
       "name": "CT-LHR",
-      "timeout": 3.0
+      "timeout": 11
     },
     {
       "ip": "172.67.146.111",
       "port": "443",
       "name": "CT-LHR",
-      "timeout": 2.0
+      "timeout": 13
     },
     {
       "ip": "172.67.165.157",
       "port": "443",
       "name": "CT-LHR",
-      "timeout": 6.0
+      "timeout": 9
     },
     {
       "ip": "172.65.43.60",
       "port": "443",
       "name": "CT-LHR",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "188.114.97.251",
       "port": "443",
       "name": "CT-LHR",
-      "timeout": 2.0
+      "timeout": 9
     },
     {
       "ip": "172.64.101.182",
       "port": "443",
       "name": "CT-MIA",
-      "timeout": 19.0
+      "timeout": 42
     },
     {
       "ip": "172.64.78.133",
       "port": "443",
       "name": "CT-MSP",
-      "timeout": 33.0
+      "timeout": 70
     },
     {
       "ip": "172.64.228.155",
       "port": 443,
       "name": "CT-NRT",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "172.64.229.64",
       "port": "443",
       "name": "CT-NRT",
-      "timeout": 3.0
+      "timeout": 2
     },
     {
       "ip": "172.64.229.220",
       "port": "443",
       "name": "CT-NRT",
-      "timeout": 2.0
+      "timeout": 1
     },
     {
       "ip": "172.64.229.49",
       "port": "443",
       "name": "CT-NRT",
-      "timeout": 2.0
+      "timeout": 11
     },
     {
       "ip": "162.159.36.153",
       "port": "443",
       "name": "CU-NRT",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "172.67.108.98",
       "port": "443",
       "name": "CU-NRT",
-      "timeout": 2.0
+      "timeout": 9
     },
     {
       "ip": "172.64.96.119",
       "port": "443",
       "name": "CT-SFO",
-      "timeout": 3.0
+      "timeout": 2
     },
     {
       "ip": "172.64.98.145",
       "port": "443",
       "name": "CT-SFO",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "162.159.212.124",
       "port": "443",
       "name": "CT-SFO",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "162.159.213.22",
       "port": "443",
       "name": "CT-SFO",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "88.216.67.4",
       "port": "443",
       "name": "CT-SJC",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "104.16.108.117",
       "port": "443",
       "name": "CT-SJC",
-      "timeout": 3.0
+      "timeout": 2
     },
     {
       "ip": "88.216.67.206",
       "port": "443",
       "name": "CT-SJC",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "104.19.236.123",
       "port": "443",
       "name": "CT-SJC",
-      "timeout": 2.0
+      "timeout": 10
     },
     {
       "ip": "185.176.26.38",
       "port": "443",
       "name": "CT-SJC",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "104.18.10.22",
       "port": "443",
       "name": "CT-SJC",
-      "timeout": 3.0
+      "timeout": 10
     },
     {
       "ip": "198.41.204.186",
       "port": "443",
       "name": "CT-SJC",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "108.162.194.156",
       "port": "443",
       "name": "CT-SJC",
-      "timeout": 1.0
+      "timeout": 2
     },
     {
       "ip": "31.12.75.185",
       "port": "443",
       "name": "CT-SJC",
-      "timeout": 1.0
+      "timeout": 2
     },
     {
       "ip": "162.159.11.2",
       "port": "443",
       "name": "CT-SJC",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "198.41.194.117",
       "port": "443",
       "name": "CT-SJC",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "167.68.5.245",
       "port": "443",
       "name": "CT-SJC",
-      "timeout": 3.0
+      "timeout": 2
     },
     {
       "ip": "45.131.211.37",
       "port": "443",
       "name": "CT-SJC",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "5.182.84.110",
       "port": "443",
       "name": "CT-SJC",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "5.10.247.183",
       "port": "443",
       "name": "CT-SJC",
-      "timeout": 3.0
+      "timeout": 2
     },
     {
       "ip": "92.53.188.120",
       "port": 443,
       "name": "CT-SJC",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "92.53.189.216",
       "port": 443,
       "name": "CT-SJC",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "23.227.39.229",
       "port": 443,
       "name": "CT-SJC",
-      "timeout": 3.0
+      "timeout": 2
     },
     {
       "ip": "172.65.193.4",
       "port": "443",
       "name": "CT-WAW",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "104.19.131.197",
       "port": "8443",
       "name": "🍃CF-优选",
-      "timeout": 2.0
+      "timeout": 9
     },
     {
       "ip": "104.19.142.50",
       "port": "2096",
       "name": "🍃CF-优选",
-      "timeout": 2.0
+      "timeout": 10
     },
     {
       "ip": "104.16.117.18",
       "port": "2096",
       "name": "🍃CF-优选",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "104.16.210.14",
       "port": "2096",
       "name": "🍃CF-优选",
-      "timeout": 2.0
+      "timeout": 9
     },
     {
       "ip": "104.16.114.64",
       "port": "2096",
       "name": "🍃CF-优选",
-      "timeout": 2.0
+      "timeout": 10
     },
     {
       "ip": "104.16.112.196",
       "port": "2087",
       "name": "🍃CF-优选",
-      "timeout": 2.0
+      "timeout": 9
     },
     {
       "ip": "104.16.115.218",
       "port": "2087",
       "name": "🍃CF-优选",
-      "timeout": 3.0
+      "timeout": 3
     },
     {
       "ip": "104.18.30.137",
       "port": "2083",
       "name": "🍃CF-优选",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "104.16.127.197",
       "port": "2053",
       "name": "🍃CF-优选",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "104.16.41.153",
       "port": "2053",
       "name": "🍃CF-优选",
-      "timeout": 4.0
+      "timeout": 2
     },
     {
       "ip": "104.16.216.2",
       "port": "443",
       "name": "🍃CF-优选",
-      "timeout": 2.0
+      "timeout": 10
     },
     {
       "ip": "104.17.75.181",
       "port": "443",
       "name": "🍃CF-优选",
-      "timeout": 3.0
+      "timeout": 2
     },
     {
       "ip": "104.19.138.233",
       "port": "443",
       "name": "🍃CF-优选",
-      "timeout": 1.0
+      "timeout": 11
     },
     {
       "ip": "104.19.142.27",
       "port": "443",
       "name": "🍃CF-优选",
-      "timeout": 3.0
+      "timeout": 9
     },
     {
       "ip": "104.16.45.184",
       "port": 443,
       "name": "💦CF-HKG",
-      "timeout": 3.0
+      "timeout": 10
     },
     {
       "ip": "104.17.129.162",
       "port": 443,
       "name": "💦CF-HKG",
-      "timeout": 2.0
+      "timeout": 9
     },
     {
       "ip": "104.16.212.156",
       "port": 443,
       "name": "💦CF-HKG",
-      "timeout": 2.0
+      "timeout": 9
     },
     {
       "ip": "104.17.76.230",
       "port": 443,
       "name": "💦CF-HKG",
-      "timeout": 2.0
+      "timeout": 11
     },
     {
       "ip": "104.16.243.194",
       "port": 443,
       "name": "💦CF-SJC",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "104.19.241.189",
       "port": 443,
       "name": "💦CF-LAX",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "104.19.134.158",
       "port": 443,
       "name": "💦CF-LAX",
-      "timeout": 2.0
+      "timeout": 9
     },
     {
       "ip": "104.16.252.219",
       "port": 443,
       "name": "💦CF-SJC",
-      "timeout": 3.0
+      "timeout": 9
     },
     {
       "ip": "162.159.240.235",
       "port": 443,
       "name": "💦CF-LAX",
-      "timeout": 3.0
+      "timeout": 2
     },
     {
       "ip": "104.17.56.165",
       "port": 443,
       "name": "💦CF-SJC",
-      "timeout": 3.0
+      "timeout": 2
     },
     {
       "ip": "162.159.11.13",
       "port": 443,
       "name": "💦CF-SJC",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "104.19.117.184",
       "port": 443,
       "name": "💦CF-SJC",
-      "timeout": 2.0
+      "timeout": 9
     },
     {
       "ip": "104.17.240.147",
       "port": 443,
       "name": "💦CF-SJC",
-      "timeout": 3.0
+      "timeout": 11
     },
     {
       "ip": "172.67.176.33",
       "port": 443,
       "name": "💦CF-LHR",
-      "timeout": 2.0
+      "timeout": 11
     },
     {
       "ip": "172.67.227.29",
       "port": 443,
       "name": "💦CF-LHR",
-      "timeout": 2.0
+      "timeout": 9
     },
     {
       "ip": "172.67.230.67",
       "port": 443,
       "name": "💦CF-LHR",
-      "timeout": 3.0
+      "timeout": 9
     },
     {
       "ip": "104.21.0.148",
       "port": 443,
       "name": "💦CF-LHR",
-      "timeout": 2.0
+      "timeout": 10
     },
     {
       "ip": "104.21.207.35",
       "port": 443,
       "name": "💦CF-LHR",
-      "timeout": 2.0
+      "timeout": 9
     },
     {
       "ip": "172.67.129.68",
       "port": 443,
       "name": "💦CF-LHR",
-      "timeout": 2.0
+      "timeout": 10
     },
     {
       "ip": "104.21.11.92",
       "port": 443,
       "name": "💦CF-LHR",
-      "timeout": 2.0
+      "timeout": 10
     },
     {
       "ip": "172.67.214.183",
       "port": 443,
       "name": "💦CF-LHR",
-      "timeout": 2.0
+      "timeout": 9
     },
     {
       "ip": "172.67.236.180",
       "port": 443,
       "name": "💦CF-LHR",
-      "timeout": 2.0
+      "timeout": 9
     },
     {
       "ip": "104.21.217.236",
       "port": 443,
       "name": "💦CF-LHR",
-      "timeout": 2.0
+      "timeout": 9
     },
     {
       "ip": "104.16.144.196",
       "port": "443",
       "name": "CMCC",
-      "timeout": 2.0
+      "timeout": 10
     },
     {
       "ip": "104.16.144.239",
       "port": "443",
       "name": "CMCC",
-      "timeout": 3.0
+      "timeout": 2
     },
     {
       "ip": "104.16.146.187",
       "port": "443",
       "name": "CMCC",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "104.16.152.163",
       "port": "443",
       "name": "CMCC",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "104.16.153.254",
       "port": "443",
       "name": "CMCC",
-      "timeout": 2.0
+      "timeout": 9
     },
     {
       "ip": "104.16.154.41",
       "port": "443",
       "name": "CMCC",
-      "timeout": 2.0
+      "timeout": 9
     },
     {
       "ip": "104.17.122.253",
       "port": "443",
       "name": "CMCC",
-      "timeout": 2.0
+      "timeout": 9
     },
     {
       "ip": "104.17.159.155",
       "port": "443",
       "name": "CMCC",
-      "timeout": 2.0
+      "timeout": 10
     },
     {
       "ip": "104.17.161.203",
       "port": "443",
       "name": "CMCC",
-      "timeout": 2.0
+      "timeout": 9
     },
     {
       "ip": "104.17.189.210",
       "port": "443",
       "name": "CMCC",
-      "timeout": 2.0
+      "timeout": 9
     },
     {
       "ip": "104.17.213.78",
       "port": "443",
       "name": "CMCC",
-      "timeout": 3.0
+      "timeout": 2
     },
     {
       "ip": "104.17.215.241",
       "port": "443",
       "name": "CMCC",
-      "timeout": 2.0
+      "timeout": 9
     },
     {
       "ip": "107.175.44.118",
       "port": "58621",
       "name": "US",
-      "timeout": 47.0
+      "timeout": 2
     },
     {
       "ip": "118.47.65.248",
       "port": "30012",
       "name": "KR",
-      "timeout": 282.0
+      "timeout": 244
     },
     {
       "ip": "130.250.137.161",
       "port": "443",
       "name": "US",
-      "timeout": 3.0
+      "timeout": 2
     },
     {
       "ip": "138.2.107.107",
       "port": "443",
       "name": "SG",
-      "timeout": 206.0
+      "timeout": 178
     },
     {
       "ip": "141.148.203.6",
       "port": "443",
       "name": "IN",
-      "timeout": 252.0
+      "timeout": 1376
     },
     {
       "ip": "141.148.229.106",
       "port": "443",
       "name": "NL",
-      "timeout": 99.0
+      "timeout": 152
     },
     {
       "ip": "152.70.57.182",
       "port": "443",
       "name": "NL",
-      "timeout": 102.0
+      "timeout": 155
     },
     {
       "ip": "162.159.152.105",
       "port": "443",
       "name": "CT",
-      "timeout": 3.0
+      "timeout": 2
     },
     {
       "ip": "162.159.152.133",
       "port": "443",
       "name": "CT",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "162.159.152.189",
       "port": "443",
       "name": "CT",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "162.159.152.97",
       "port": "443",
       "name": "CT",
-      "timeout": 3.0
+      "timeout": 2
     },
     {
       "ip": "162.159.153.114",
       "port": "443",
       "name": "CT",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "162.159.153.122",
       "port": "443",
       "name": "CT",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "162.159.153.154",
       "port": "443",
       "name": "CT",
-      "timeout": 3.0
+      "timeout": 2
     },
     {
       "ip": "162.159.153.155",
       "port": "443",
       "name": "CT",
-      "timeout": 2.0
+      "timeout": 1
     },
     {
       "ip": "162.159.153.156",
       "port": "443",
       "name": "CT",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "162.159.153.48",
       "port": "443",
       "name": "CT",
-      "timeout": 3.0
+      "timeout": 2
     },
     {
       "ip": "162.159.153.78",
       "port": "443",
       "name": "CT",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "168.138.13.201",
       "port": "443",
       "name": "AU",
-      "timeout": 199.0
+      "timeout": 156
     },
     {
       "ip": "185.133.35.125",
       "port": "443",
       "name": "BR",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "185.133.35.155",
       "port": "443",
       "name": "BR",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "185.133.35.167",
       "port": "443",
       "name": "BR",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "185.133.35.237",
       "port": "443",
       "name": "BR",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "185.133.35.78",
       "port": "443",
       "name": "BR",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "185.133.35.82",
       "port": "443",
       "name": "BR",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "185.133.35.99",
       "port": "443",
       "name": "BR",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "185.16.110.0",
       "port": "443",
       "name": "FR",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "185.16.110.107",
       "port": "443",
       "name": "FR",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "192.0.54.137",
       "port": "443",
       "name": "US",
-      "timeout": 3.0
+      "timeout": 2
     },
     {
       "ip": "192.0.54.168",
       "port": "443",
       "name": "US",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "192.0.54.18",
       "port": "443",
       "name": "US",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "192.18.134.22",
       "port": "443",
       "name": "US",
-      "timeout": 49.0
+      "timeout": 2
     },
     {
       "ip": "193.123.244.37",
       "port": "34237",
       "name": "KR",
-      "timeout": 189.0
+      "timeout": 135
     },
     {
       "ip": "210.61.97.241",
       "port": "81",
       "name": "TW",
-      "timeout": 184.0
+      "timeout": 143
     },
     {
       "ip": "212.183.88.100",
       "port": "443",
       "name": "AT",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "212.183.88.109",
       "port": "443",
       "name": "AT",
-      "timeout": 3.0
+      "timeout": 2
     },
     {
       "ip": "212.183.88.132",
       "port": "443",
       "name": "AT",
-      "timeout": 3.0
+      "timeout": 1
     },
     {
       "ip": "212.183.88.162",
       "port": "443",
       "name": "AT",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "212.183.88.186",
       "port": "443",
       "name": "AT",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "212.183.88.231",
       "port": "443",
       "name": "AT",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "212.183.88.43",
       "port": "443",
       "name": "AT",
-      "timeout": 3.0
+      "timeout": 2
     },
     {
       "ip": "216.221.210.185",
       "port": "443",
       "name": "US",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "217.163.76.102",
       "port": "443",
       "name": "GB",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "217.163.76.97",
       "port": "443",
       "name": "GB",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "217.163.76.99",
       "port": "443",
       "name": "GB",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "38.145.210.77",
       "port": "55555",
       "name": "US",
-      "timeout": 45.0
+      "timeout": 10
     },
     {
       "ip": "45.154.98.230",
       "port": "5007",
       "name": "NL",
-      "timeout": 101.0
+      "timeout": 147
     },
     {
       "ip": "45.154.98.230",
       "port": "5001",
       "name": "NL",
-      "timeout": 100.0
+      "timeout": 152
     },
     {
       "ip": "45.154.98.230",
       "port": "7102",
       "name": "NL",
-      "timeout": 102.0
+      "timeout": 153
     },
     {
       "ip": "45.154.98.230",
       "port": "5003",
       "name": "NL",
-      "timeout": 105.0
+      "timeout": 148
     },
     {
       "ip": "45.67.215.0",
       "port": "443",
       "name": "RU",
-      "timeout": 3.0
+      "timeout": 2
     },
     {
       "ip": "47.74.254.191",
       "port": "8900",
       "name": "SG",
-      "timeout": 209.0
+      "timeout": 168
     },
     {
       "ip": "63.141.128.100",
       "port": "443",
       "name": "US",
-      "timeout": 3.0
+      "timeout": 2
     },
     {
       "ip": "63.141.128.102",
       "port": "443",
       "name": "US",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "63.141.128.163",
       "port": "443",
       "name": "US",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "63.141.128.177",
       "port": "443",
       "name": "US",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "63.141.128.209",
       "port": "443",
       "name": "US",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "63.141.128.241",
       "port": "443",
       "name": "US",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "63.141.128.94",
       "port": "443",
       "name": "US",
-      "timeout": 2.0
+      "timeout": 2
     },
     {
       "ip": "140.238.201.118",
       "port": 443,
       "name": "澳大利亚",
-      "timeout": 187.0
+      "timeout": 145
     },
     {
       "ip": "141.144.253.109",
       "port": 443,
       "name": "德国",
-      "timeout": 114.0
+      "timeout": 154
     },
     {
       "ip": "152.67.190.105",
       "port": 443,
       "name": "印度",
-      "timeout": 241.0
+      "timeout": 329
     },
     {
       "ip": "158.180.231.216",
       "port": 443,
       "name": "意大利",
-      "timeout": 107.0
+      "timeout": 162
     },
     {
       "ip": "168.138.13.201",
       "port": 443,
       "name": "澳大利亚",
-      "timeout": 199.0
+      "timeout": 156
     },
     {
       "ip": "141.148.203.6",
       "port": 443,
       "name": "印度",
-      "timeout": 251.0
+      "timeout": 331
     },
     {
       "ip": "18.170.77.148",
       "port": 443,
       "name": "英国",
-      "timeout": 94.0
+      "timeout": 144
     },
     {
       "ip": "18.216.55.100",
       "port": 443,
       "name": "美国",
-      "timeout": 11.0
+      "timeout": 56
     },
     {
       "ip": "184.169.181.217",
       "port": 443,
       "name": "美国",
-      "timeout": 63.0
+      "timeout": 4
     },
     {
       "ip": "3.75.170.179",
       "port": 443,
       "name": "德国",
-      "timeout": 109.0
+      "timeout": 158
     },
     {
       "ip": "34.175.202.195",
       "port": 443,
       "name": "西班牙",
-      "timeout": 103.0
+      "timeout": 151
     }
   ],
   "ipv6": []
