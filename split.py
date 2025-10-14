@@ -6,7 +6,7 @@ def extract_ip_port_name(s):
     pattern = r'''
         ^
         (?:
-            (?P<ipv6>\[([0-9a-fA-F:]+)\]|([0-9a-fA-F:]+)) |
+            (?P<ipv6>\[[0-9a-fA-F:]+\]|[0-9a-fA-F:]+) |
             (?P<ipv4>\d+\.\d+\.\d+\.\d+)
         )
         (:(?P<port>\d+))?
@@ -19,7 +19,7 @@ def extract_ip_port_name(s):
     ip = match.group('ipv6') or match.group('ipv4')
     ip = ip[1:-1] if ip and ip.startswith('[') and ip.endswith(']') else ip
     return ip, match.group('port'), match.group('name')
-
+    
 # 1. 读取文件并解析
 ip_list = []
 try:
