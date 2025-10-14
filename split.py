@@ -72,13 +72,13 @@ else:
     for line_num, line in enumerate(lines, 1):
         ip, port, name = extract_ip_port_name(line)
         success, msg, timeout = test_ip_connection(ip, port)
-        if not success: print(f'{ip}：{msg}')
-        if ':' in ip:
-            ipv6_list.append({"ip": ip, "port": port, "name": name, 'timeout': timeout})
-        elif '.' in ip:
-            ipv4_list.append({"ip": ip, "port": port, "name": name, 'timeout': timeout})
+        if success:
+            if ':' in ip:
+                ipv6_list.append({"ip": ip, "port": port, "name": name, 'timeout': timeout})
+            else:
+                ipv4_list.append({"ip": ip, "port": port, "name": name, 'timeout': timeout})
         else:
-            print(f"警告：第{line_num}行格式无效 → {line}")
+            print(f'{ip}:{port)：{msg}')
             
 ip_dict = {'ipv4': ipv4_list, 'ipv6': ipv6_list}
 
