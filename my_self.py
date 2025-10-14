@@ -145,11 +145,12 @@ if __name__ == "__main__":
     if vless_urls:
         if not os.path.exists('docs'):
             os.makedirs('docs')
-        with open('docs/index.html', 'w', encoding='utf-8') as file:
-            file.write(vless_urls)
-            print(f'✅ 写入index成功！')
-        for step in [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]:
+            
+        for step in ['.html', 5, 10, 15, 20, 25, 30, 35, 40, 45, 50]:
             with open(f'docs/index{step}', 'w', encoding='utf-8') as file:
-                file.write('\n'.join(vless_urls.split('\n')[:step]))
+                if step == '.html': 
+                    file.write(vless_urls)
+                else:
+                    file.write('\n'.join(vless_urls.split('\n')[:step]))
                 print(f'✅ 写入index{step}成功！')
                 
