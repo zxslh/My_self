@@ -39,12 +39,12 @@ jobs:
       # 步骤5：将生成的JSON文件提交并推回仓库
       - name: 提交JSON文件到仓库
         run: |
-        git config --local user.email "actions@github.com"
-        git config --local user.name "GitHub Action"
-        if [ -n "$(git status --porcelain)" ]; then
-          git add ip_info.json
-          git commit -m "Automatic update"
-          git push
-        else
-          echo "No changes detected, skipping commit."
-        fi
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Action"
+          if [ -n "$(git status --porcelain)" ]; then
+            git add ip_info.json
+            git commit -m "Automatic update"
+            git push
+          else
+            echo "No changes detected, skipping commit."
+          fi
