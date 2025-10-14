@@ -108,10 +108,12 @@ def update_A(host, host_domain, host_token, worker, worker_token):
                 update_response.raise_for_status()
                 print(f"✅ 成功：{sub_name:02d}.{domain} → {current_ip}")
                 build_vless_urls(f'{sub_name:02d}', domain, worker, worker_token)
-                sub_name += 1
+                
             except Exception as e:
                 print(f"❌ {sub_name:02d}.{domain} 操作失败：{str(e)}")
-                break
+                continue
+            finally:
+                sub_name += 1
                 
 def build_vless_urls(a, b, c, d):
  #   if True: return  # 需要生成文件注销此行
@@ -141,6 +143,8 @@ if __name__ == "__main__":
         update_A('dynv6', DYNV6_domain, DYNV6_TOKEN, QQ_HOST, QQ_TOKEN)
 
     if vless_urls:
+        if not os.path.exists('docs'):
+            os.makedirs('docs')
         with open('docs/index.html', 'w', encoding='utf-8') as file:
             file.write(vless_urls)
             print(f'✅ 写入index成功！')
