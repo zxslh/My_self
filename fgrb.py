@@ -1,3 +1,4 @@
+
 # 1. 读取文件，按完整格式（含端口和后缀）去重
 with open('bad_ips', 'r', encoding='utf-8') as f:
     # 过滤空行，strip()仅去除首尾空白（保留格式中的:和#）
