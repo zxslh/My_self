@@ -81,7 +81,7 @@ def update_A(host, host_domain, host_token, worker, worker_token):
         except Exception as e:
             print(f"❌ {domain} 获取domain记录信息失败：{str(e)}")
             continue
-        while int(node_num) > 0:
+        while sub_name < 51:
             try:
                 current_ip = unique_ips.pop()
             except Exception as e:
@@ -107,7 +107,6 @@ def update_A(host, host_domain, host_token, worker, worker_token):
                 print(f"✅ 成功：{sub_name:02d}.{domain} → {current_ip}")
                 bulid_vless_urls(f'{sub_name:02d}', domain, worker, worker_token)
                 sub_name += 1
-                node_num -= 1
             except Exception as e:
                 print(f"❌ {sub_name:02d}.{domain} 操作失败：{str(e)}")
                 break
@@ -133,7 +132,6 @@ if __name__ == "__main__":
     DYNV6_domain = 'cf-zxs.dns.army'
     DYNU_domain = ''
 
-    node_num = 50
     get_ips()
 
     if unique_ips:
