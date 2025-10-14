@@ -85,7 +85,7 @@ def update_A(host, host_domain, host_token, worker, worker_token):
             try:
                 current_ip = unique_ips.pop()
             except Exception as e:
-                print(f"❌ CFIP地址不够，缺{nod_num}个")
+                print(f"❌ CFIP地址不够")
                 return
 
             record_data = {
