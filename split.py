@@ -39,7 +39,7 @@ else:
         ip, port, name = extract_ip_port_name(line)
         if len(ip) > 15:
             ipv6_list.append({"ip": ip, "port": port, "name": name})
-        else:
+        elif len(ip) >= 7 and len(ip) <= 15:
             ipv4_list.append({"ip": ip, "port": port, "name": name})
         else:
             print(f"警告：第{line_num}行格式无效 → {line}")
