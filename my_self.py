@@ -25,6 +25,9 @@ def get_ips():
             unique_ips.update(ip_matches)
         except Exception as e:
             print(f"❌ 失败: {str(e)}")
+    with open('badips', 'r', encoding='utf-8') as file:
+        for badip in file:
+            unique_ips.discard(badip.rstrip())
 
 def update_A(host, host_domain, host_token, worker, worker_token):
 
