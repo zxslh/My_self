@@ -12,8 +12,7 @@ def test_ip_connection(ip, port, timeout=3):
     :param timeout: 超时时间（秒）
     :return: (bool, str)：连接结果（True/False）、状态描述
     """
-    if not port:
-        return False, "未指定端口，无法测试TCP连接"
+    if not port: port = 443
     
     try:
         # 创建TCP socket
