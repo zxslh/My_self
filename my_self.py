@@ -29,7 +29,7 @@ def get_ips():
     try:
         with open('badips', 'r', encoding='utf-8') as file:
             for badip in file:
-                unique_ips.discard(badip.rstrip())
+                unique_ips.discard(badip.strip())
     except Exception as e:
             print(f"❌ 读取失败: {str(e)}")
     unique_ips_num = len(unique_ips)
