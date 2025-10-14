@@ -42,7 +42,7 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Action"
           if [ -n "$(git status --porcelain)" ]; then
-            git add ip_info.json good_ips bad_ips
+            git add ip_info.json docs/good_ips bad_ips
             git commit -m "Automatic update"
             git push
           else
