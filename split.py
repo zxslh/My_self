@@ -75,11 +75,14 @@ else:
         ip, port, name = extract_ip_port_name(line)
         success, msg, timeout = test_ip_connection(ip, port)
         if success:
-            good_ips += f'{line}\n'
-            if ':' in ip:
-                ipv6_list.append({"ip": ip, "port": port, "name": name, 'timeout': timeout})
+            if ip not in good_ips:
+                good_ips += f'{line}\n'
+                if ':' in ip:
+                    ipv6_list.append({"ip": ip, "port": port, "name": name, 'timeout': timeout})
+                else:
+                    ipv4_list.append({"ip": ip, "port": port, "name": name, 'timeout': timeout})
             else:
-                ipv4_list.append({"ip": ip, "port": port, "name": name, 'timeout': timeout})
+                print(f'{ip}重复，已丢弃')
         else:
             bad_ips += f'{line}\n'
             print(f'{ip}:{port}：{msg}')
