@@ -109,8 +109,7 @@ def update_A(host, host_domain, host_token, worker, worker_token):
                 sub_name += 1
                 node_num -= 1
             except Exception as e:
-                if "501 S" not in str(e) and "401 E" not in str(e): 
-                    print(f"❌ {sub_name:02d}.{domain} 操作失败：{str(e)}")
+                print(f"❌ {sub_name:02d}.{domain} 操作失败：{str(e)}")
                 break
                 
 def bulid_vless_urls(a, b, c, d):
