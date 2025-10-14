@@ -17,8 +17,10 @@ def test_ip_connection(ip, port, timeout=3):
     
     try:
         # 创建TCP socket
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # IPv4+TCP
-        # 若为IPv6，需替换为：socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
+        if '.' in ip:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # IPv4+TCP
+        else:
+            socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
         sock.settimeout(timeout)
         start_time = time.time()
         sock.connect((ip, int(port)))  # 建立连接
@@ -67,13 +69,13 @@ else:
     # 解析每行数据
     for line_num, line in enumerate(lines, 1):
         ip, port, name = extract_ip_port_name(line)
+        #sucess, msg, t = test_ip_connection(ip, port)
+        #print(f'{ip}：{msg}')
+        #if success:
         if ':' in ip:
             ipv6_list.append({"ip": ip, "port": port, "name": name})
         elif '.' in ip:
             ipv4_list.append({"ip": ip, "port": port, "name": name})
-            #sucess, msg, t = test_ip_connection(ip, port)
-            #print(f'{ip}：{msg}')
-            #if success:
         else:
             print(f"警告：第{line_num}行格式无效 → {line}")
             
