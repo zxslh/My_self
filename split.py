@@ -23,7 +23,7 @@ def extract_ip_port_name(s):
 # 1. 读取文件并解析
 ip_list = []
 try:
-    with open('goodip', 'r', encoding='utf-8') as f:
+    with open('goodips', 'r', encoding='utf-8') as f:
         for line_num, line in enumerate(f, 1):
             line = line.strip()
             if not line:  # 跳过空行
