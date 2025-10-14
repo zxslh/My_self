@@ -2,7 +2,7 @@ import re
 import os
 f_771 = ''
 f_crv = ''
-with open('index.html', 'r', encoding='utf-8') as read_file:
+with open('goodips', 'r', encoding='utf-8') as read_file:
     for line in read_file:
         if '771' in line:
             f_771 += f'{line}\n'  # 新行追加到末尾，保持原顺序
