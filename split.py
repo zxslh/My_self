@@ -18,11 +18,14 @@ def test_ip_connection(ip, port, timeout=3):
         # 创建TCP socket
         if '.' in ip:
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # IPv4+TCP
+            target_addr = (ip, int(port))
         else:
-            socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
+            sock = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
+            addr_info = socket.getaddrinfo(ip, int(port), socket.AF_INET6, socket.SOCK_STREAM)
+            target_addr = addr_info[0][4]  # 提取IPv6地址元组（含scope_id）
         sock.settimeout(timeout)
         start_time = time.time()
-        sock.connect((ip, int(port)))  # 建立连接
+        sock.connect(target_addr)  # 建立连接
         sock.close()
         cost_time = round(time.time() - start_time, 2)
         return True, f"连接成功 耗时：", cost_time
