@@ -88,11 +88,11 @@ ip_dict = {'ipv4': ipv4_list, 'ipv6': ipv6_list}
 
 # 2. 保存为JSON文件（确保无论是否有数据都生成文件）
 try:
-    with open('docs/good_ips', 'w', encoding='utf-8') as f:
+    with open('good_ips', 'w', encoding='utf-8') as f:
         f.write(good_ips)
     with open('bad_ips', 'w', encoding='utf-8') as f:
         f.write(bad_ips)
-    with open('ip_info.json', 'w', encoding='utf-8') as f:
+    with open('docs/ip_info.json', 'w', encoding='utf-8') as f:
         json.dump(ip_dict, f, indent=2, ensure_ascii=False)
     print(f"JSON文件生成成功！路径：{os.path.abspath('ip_info.json')}，有效数据条数：{len(ip_list)}")
 except Exception as e:
