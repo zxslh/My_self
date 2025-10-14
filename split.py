@@ -1,6 +1,36 @@
 import re
 import json
 import os
+import socket
+import time
+
+def test_ip_connection(ip, port, timeout=3):
+    """
+    测试IP+端口的TCP连接
+    :param ip: 目标IP
+    :param port: 目标端口（int类型，如无端口可传None）
+    :param timeout: 超时时间（秒）
+    :return: (bool, str)：连接结果（True/False）、状态描述
+    """
+    if not port:
+        return False, "未指定端口，无法测试TCP连接"
+    
+    try:
+        # 创建TCP socket
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # IPv4+TCP
+        # 若为IPv6，需替换为：socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
+        sock.settimeout(timeout)
+        start_time = time.time()
+        sock.connect((ip, int(port)))  # 建立连接
+        sock.close()
+        cost_time = round(time.time() - start_time, 2)
+        return True, f"连接成功（耗时{cost_time}s）"
+    except socket.timeout:
+        return False, f"连接超时（超时时间{timeout}s）"
+    except ConnectionRefusedError:
+        return False, "端口拒绝连接（端口关闭或服务未启动）"
+    except Exception as e:
+        return False, f"连接失败：{str(e)}"
 
 def extract_ip_port_name(s):
     """彻底修复括号问题，兼容IPv4/IPv6，简化正则结构"""
@@ -41,6 +71,8 @@ else:
             ipv6_list.append({"ip": ip, "port": port, "name": name})
         elif '.' in ip:
             ipv4_list.append({"ip": ip, "port": port, "name": name})
+            if not test_ip_connection(ip, port):
+                print(f'{ip} 测试不通过')
         else:
             print(f"警告：第{line_num}行格式无效 → {line}")
             
