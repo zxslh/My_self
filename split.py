@@ -48,7 +48,7 @@ def extract_ip_port_name(s):
 
 # 1. 读取文件并解析
 ip_list = []
-goodip_path = 'goodips'
+goodip_path = 'allips'
 
 # 检查goodips文件是否存在
 if not os.path.exists(goodip_path):
