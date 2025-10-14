@@ -27,11 +27,11 @@ def test_ip_connection(ip, port, timeout=3):
         cost_time = round(time.time() - start_time, 2)
         return True, f"连接成功 耗时：", cost_time
     except socket.timeout:
-        return False, f"连接超时", None
+        return False, f"连接超时", -1
     except ConnectionRefusedError:
-        return False, "端口拒绝连接（端口关闭或服务未启动）", None
+        return False, "端口拒绝连接（端口关闭或服务未启动）", -1
     except Exception as e:
-        return False, f"连接失败：{str(e)}"
+        return False, f"连接失败：{str(e)}", -1
 
 def extract_ip_port_name(s):
     """彻底修复括号问题，兼容IPv4/IPv6，简化正则结构"""
@@ -68,7 +68,7 @@ else:
     # 解析每行数据
     for line_num, line in enumerate(lines, 1):
         ip, port, name = extract_ip_port_name(line)
-        #sucess, msg, t = test_ip_connection(ip, port)
+        #sucess, msg, timeout = test_ip_connection(ip, port)
         #print(f'{ip}：{msg}')
         #if success:
         if ':' in ip:
