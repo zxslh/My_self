@@ -1,0 +1,54 @@
+name: IP Filter Automation
+
+# 触发条件：可选其一或组合
+on:
+  push:
+    branches: [ main ]  # 当代码推送到main分支时触发
+    paths:              # 仅当以下文件变更时触发（优化性能）
+      - 'good_ips'
+      - 'bad_ips'
+      - '.github/workflows/ip-filter.yml'
+ # schedule:
+  #  - cron: '0 0 * * *'  # 每日UTC时间0点定时触发（可选）
+  workflow_dispatch:      # 允许手动在GitHub界面触发（推荐保留）
+
+jobs:
+  filter-ips:
+    runs-on: ubuntu-latest  # 使用Ubuntu环境（免费且通用）
+
+    steps:
+      # 1. 拉取仓库代码到运行环境
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # 2. 设置Python环境（匹配脚本运行的Python版本）
+      - name: Set Up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'  # 可改为你的脚本使用的Python版本（如3.9、3.11）
+         # cache: 'pip'            # 缓存pip依赖，加速后续运行
+
+      # 3. （可选）安装依赖（若脚本需额外库，如python-dotenv，可添加此步）
+      # - name: Install Dependencies
+      #   run: pip install -r requirements.txt
+
+      # 4. 执行IP过滤Python脚本
+      - name: Run IP Filter Script
+        run: fgrb.py  # 替换为你的Python脚本文件名（如filter_ips.py）
+
+      # 5. 检查过滤后文件是否有变更
+      - name: Check for Changes
+        id: check_changes
+        run: |
+          git status --porcelain
+          echo "changes=$(git status --porcelain | wc -l)" >> $GITHUB_OUTPUT
+
+      # 6. 若有变更，提交并推回仓库
+      - name: Commit and Push Changes
+        if: steps.check_changes.outputs.changes > 0  # 仅当有变更时执行
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+          git add good_ips  # 提交过滤后的good_ips文件
+          git commit -m "Auto-filter IPs: Remove bad entries [skip ci]"  # [skip ci]避免触发循环
+          git push origin main
