@@ -2,25 +2,18 @@ import re
 import json
 
 def extract_ip_port_name(s):
-    """修复括号不匹配问题，兼容IPv4/IPv6"""
-    pattern = r'''
-        ^
-        (?:
-            # 修复：IPv6模式中补充缺失的闭合括号
-            (?P<ipv6>\[([0-9a-fA-F:]+)\]|([0-9a-fA-F:]+)) |
-            (?P<ipv4>\d+\.\d+\.\d+\.\d+)
-        )
-        (:(?P<port>\d+))?
-        (#(?P<name>.+))?
-        $
-    '''
-    # 注意：保留 re.VERBOSE 和 re.IGNORECASE 参数
-    match = re.match(pattern, s.strip(), re.VERBOSE | re.IGNORECASE)
+    """彻底修复括号问题，兼容IPv4/IPv6，简化正则结构"""
+    # 简化正则：移除IPv6模式中所有冗余括号，仅保留必要分组
+    pattern = r'^(?P<ip>(?:\[[0-9a-fA-F:]+\]|[0-9a-fA-F:]+|\d+\.\d+\.\d+\.\d+))(:(?P<port>\d+))?(#(?P<name>.+))?$'
+    # 不再使用re.VERBOSE，避免换行缩进干扰括号解析
+    match = re.match(pattern, s.strip(), re.IGNORECASE)
     if not match:
         return None, None, None
-    ip = match.group('ipv6') or match.group('ipv4')
+    ip = match.group('ip')
+    # 移除IPv6可能的[]
     ip = ip[1:-1] if ip and ip.startswith('[') and ip.endswith(']') else ip
     return ip, match.group('port'), match.group('name')
+
     
 # 1. 读取文件并解析
 ip_list = []
