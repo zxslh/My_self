@@ -37,9 +37,9 @@ else:
     # 解析每行数据
     for line_num, line in enumerate(lines, 1):
         ip, port, name = extract_ip_port_name(line)
-        if len(ip) > 15:
+        if ':' in ip:
             ipv6_list.append({"ip": ip, "port": port, "name": name})
-        elif len(ip) >= 7 and len(ip) <= 15:
+        elif '.' in ip:
             ipv4_list.append({"ip": ip, "port": port, "name": name})
         else:
             print(f"警告：第{line_num}行格式无效 → {line}")
