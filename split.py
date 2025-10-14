@@ -75,13 +75,13 @@ else:
         ip, port, name = extract_ip_port_name(line)
         success, msg, timeout = test_ip_connection(ip, port)
         if success:
-            good_ips += f'{line}\n}
+            good_ips += f'{line}\n'
             if ':' in ip:
                 ipv6_list.append({"ip": ip, "port": port, "name": name, 'timeout': timeout})
             else:
                 ipv4_list.append({"ip": ip, "port": port, "name": name, 'timeout': timeout})
         else:
-            bad_ips += f'{line}\n}
+            bad_ips += f'{line}\n'
             print(f'{ip}:{port}：{msg}')
             
 ip_dict = {'ipv4': ipv4_list, 'ipv6': ipv6_list}
