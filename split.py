@@ -59,22 +59,21 @@ except Exception as e:
     print(f"读取{goodip_path}文件失败！错误原因：{str(e)}")
     exit(1)
 
-# 检查goodips文件是否为空
 ipv4_list = []
 ipv6_list = []
+# 检查goodips文件是否为空
 if not lines:
     print(f"警告：{goodip_path}文件为空，生成空JSON")
 else:
     # 解析每行数据
     for line_num, line in enumerate(lines, 1):
         ip, port, name = extract_ip_port_name(line)
-        #sucess, msg, timeout = test_ip_connection(ip, port)
-        #print(f'{ip}：{msg}')
-        #if success:
+        sucess, msg, timeout = test_ip_connection(ip, port)
+        if not success: print(f'{ip}：{msg}')
         if ':' in ip:
-            ipv6_list.append({"ip": ip, "port": port, "name": name})
+            ipv6_list.append({"ip": ip, "port": port, "name": name, 'timeout': timeout})
         elif '.' in ip:
-            ipv4_list.append({"ip": ip, "port": port, "name": name})
+            ipv4_list.append({"ip": ip, "port": port, "name": name, 'timeout': timeout})
         else:
             print(f"警告：第{line_num}行格式无效 → {line}")
             
