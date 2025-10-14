@@ -71,8 +71,8 @@ else:
             ipv6_list.append({"ip": ip, "port": port, "name": name})
         elif '.' in ip:
             ipv4_list.append({"ip": ip, "port": port, "name": name})
-            if not test_ip_connection(ip, port):
-                print(f'{ip} 测试不通过')
+            #if not test_ip_connection(ip, port):
+            #    print(f'{ip} 测试不通过')
         else:
             print(f"警告：第{line_num}行格式无效 → {line}")
             
