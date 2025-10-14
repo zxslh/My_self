@@ -148,34 +148,8 @@ if __name__ == "__main__":
         with open('docs/index.html', 'w', encoding='utf-8') as file:
             file.write(vless_urls)
             print(f'✅ 写入index成功！')
-        with open('docs/index5', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls.split('\n')[:5]))
-            print(f'✅ 写入index5成功！')
-        with open('docs/index10', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls.split('\n')[:10]))
-            print(f'✅ 写入index10成功！')
-        with open('docs/index15', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls.split('\n')[:15]))
-            print(f'✅ 写入index15成功！')
-        with open('docs/index20', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls.split('\n')[:20]))
-            print(f'✅ 写入index20成功！')
-        with open('docs/index25', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls.split('\n')[:25]))
-            print(f'✅ 写入index25成功！')
-        with open('docs/index30', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls.split('\n')[:30]))
-            print(f'✅ 写入index30成功！')
-        with open('docs/index35', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls.split('\n')[:35]))
-            print(f'✅ 写入index35成功！')
-        with open('docs/index40', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls.split('\n')[:40]))
-            print(f'✅ 写入index40成功！')
-        with open('docs/index45', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls.split('\n')[:45]))
-            print(f'✅ 写入index45成功！')
-        with open('docs/index50', 'w', encoding='utf-8') as file:
-            file.write('\n'.join(vless_urls.split('\n')[:50]))
-            print(f'✅ 写入index50成功！')
-
+        for step in [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]:
+            with open(f'docs/index{step}', 'w', encoding='utf-8') as file:
+                file.write('\n'.join(vless_urls.split('\n')[:step]))
+                print(f'✅ 写入index{step}成功！')
+                
