@@ -24,11 +24,11 @@ def test_ip_connection(ip, port, timeout=3):
         sock.connect((ip, int(port)))  # 建立连接
         sock.close()
         cost_time = round(time.time() - start_time, 2)
-        return True, f"连接成功（耗时{cost_time}s）"
+        return True, f"连接成功 耗时：", cost_time
     except socket.timeout:
-        return False, f"连接超时（超时时间{timeout}s）"
+        return False, f"连接超时", None
     except ConnectionRefusedError:
-        return False, "端口拒绝连接（端口关闭或服务未启动）"
+        return False, "端口拒绝连接（端口关闭或服务未启动）", None
     except Exception as e:
         return False, f"连接失败：{str(e)}"
 
@@ -71,8 +71,9 @@ else:
             ipv6_list.append({"ip": ip, "port": port, "name": name})
         elif '.' in ip:
             ipv4_list.append({"ip": ip, "port": port, "name": name})
-            #if not test_ip_connection(ip, port):
-            #    print(f'{ip} 测试不通过')
+            #sucess, msg, t = test_ip_connection(ip, port)
+            #print(f'{ip}：{msg}')
+            #if success:
         else:
             print(f"警告：第{line_num}行格式无效 → {line}")
             
