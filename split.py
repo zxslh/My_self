@@ -25,7 +25,7 @@ def test_ip_connection(ip, port, timeout=3):
         start_time = time.time()
         sock.connect(target_addr)  # 建立连接
         sock.close()
-        cost_time = round(time.time() - start_time, 3)*1000
+        cost_time = int(round(time.time() - start_time, 3)*1000)
         return True, f"连接成功 耗时：", cost_time
     except socket.timeout:
         return False, f"连接超时", -1
