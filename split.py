@@ -1,30 +1,49 @@
 import re
-import os
-f_771 = ''
-f_crv = ''
-ip_info = {}
-ip_group = []
-with open('goodips', 'r', encoding='utf-8') as read_file:
-    for line in read_file:
-        pattern = r'^(?P<ip>\d+\.\d+\.\d+\.\d+)(:(?P<port>\d+))?(#(?P<name>.+))?$'
-        match = re.match(pattern, s)
-        if match:
-            ip = match.group('ip')       # 提取IP地址
-            port = match.group('port')   # 提取端口（不存在时为None）
-            name = match.group('name')   # 提取名称（不存在时为None）
-            ip_info = {'IP': ip, '端口': port, '名称': 'name'}
-            ip_group.append(ip_info)
-            
-        
-        if '771' in line:
-            f_771 += f'{line}\n'  # 新行追加到末尾，保持原顺序
-        if 'crv' in line:
-            f_crv += f'{line}\n'
+import json
 
-# 用rstrip移除末尾空行，写入更整洁
-with open('f_crv', 'w', encoding='utf-8') as fcrv:
-    fcrv.write(f_crv.rstrip('\n'))
-with open('f_771', 'w', encoding='utf-8') as f771:
-    f771.write(f_771.rstrip('\n'))
-       
-    print(f'✅ 写入成功！')
+def extract_ip_port_name(s):
+    """复用之前的IP/端口/名称提取函数，兼容IPv4/IPv6"""
+    pattern = r'''
+        ^
+        (?:
+            (?P<ipv6>\[([0-9a-fA-F:]+)\]|([0-9a-fA-F:]+)) |
+            (?P<ipv4>\d+\.\d+\.\d+\.\d+)
+        )
+        (:(?P<port>\d+))?
+        (#(?P<name>.+))?
+        $
+    '''
+    match = re.match(pattern, s.strip(), re.VERBOSE | re.IGNORECASE)
+    if not match:
+        return None, None, None
+    ip = match.group('ipv6') or match.group('ipv4')
+    ip = ip[1:-1] if ip and ip.startswith('[') and ip.endswith(']') else ip
+    return ip, match.group('port'), match.group('name')
+
+# 1. 读取文件并解析
+ip_list = []
+try:
+    with open('goodip', 'r', encoding='utf-8') as f:
+        for line_num, line in enumerate(f, 1):
+            line = line.strip()
+            if not line:  # 跳过空行
+                continue
+            ip, port, name = extract_ip_port_name(line)
+            if ip:  # 仅保留解析成功的条目
+                ip_list.append({
+                    "ip": ip,
+                    "port": port,  # 无端口时为None
+                    "name": name   # 无名称时为None
+                })
+            else:
+                print(f"警告：第{line_num}行格式无效，已跳过 → {line}")
+except FileNotFoundError:
+    print("错误：未找到'goodip'文件，请确认文件路径正确")
+    exit()
+
+# 2. 保存为JSON文件
+with open('ip_info.json', 'w', encoding='utf-8') as f:
+    # indent=2 用于格式化JSON，增强可读性；ensure_ascii=False 支持中文名称
+    json.dump(ip_list, f, indent=2, ensure_ascii=False)
+
+print(f"处理完成！共解析{len(ip_list)}条有效数据，已保存至'ip_info.json'")
