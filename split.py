@@ -110,7 +110,7 @@ try:
         bad_ips_str = "\n".join(bad_ips)
         f.write(bad_ips_str)
     with open('docs/ip_info.json', 'w', encoding='utf-8') as f:
-        json.dump(ip_dict, f, indent=2, ensure_ascii=False)
+        json.dump(good_ips_dict, f, indent=2, ensure_ascii=False)
     print(f"JSON文件生成成功！路径：{os.path.abspath('ip_info.json')}，有效数据条数：{len(ip_list)}")
 except Exception as e:
     print(f"生成JSON文件失败！错误原因：{str(e)}")
