@@ -48,53 +48,68 @@ def extract_ip_port_name(s):
 
 # 1. 读取文件并解析
 ip_list = []
-goodip_path = 'allips'
-
+allips_path = 'allips'
+bad_ips_path = 'bad_ips'
 # 检查goodips文件是否存在
-if not os.path.exists(goodip_path):
-    print(f"错误：未找到{goodip_path}文件，路径：{os.path.abspath(goodip_path)}")
+if not os.path.exists(allips_path):
+    print(f"错误：未找到{allips_path}文件，路径：{os.path.abspath(allips_path)}")
     exit(1)
-
 try:
-    with open(goodip_path, 'r', encoding='utf-8') as f:
+    with open(allips_path, 'r', encoding='utf-8') as f:
         lines = [line.strip() for line in f if line.strip()]  # 过滤空行
 except Exception as e:
-    print(f"读取{goodip_path}文件失败！错误原因：{str(e)}")
+    print(f"读取{allips_path}文件失败！错误原因：{str(e)}")
     exit(1)
 
 ipv4_list = []
 ipv6_list = []
-bad_ips = ''
-good_ips = ''
-# 检查goodips文件是否为空
+with open(bad_ips_path, 'r', encoding='utf-8') as f:
+    bad_ips = set(line.split('#')[0].split(':')[0].strip() for line in f if line.strip())
+with open('docs/ip_info.json', 'r', encoding='utf-8') as f:
+    good_ips_dict = json.load(f)
+good_ipv4s_list = good_ips_dict['ipv4']
+good_ipv6s_list = good_ips_dict['ipv6']
+# 检查allips文件是否为空
 if not lines:
-    print(f"警告：{goodip_path}文件为空，生成空JSON")
+    print(f"警告：{allips_path}文件为空，生成空JSON")
 else:
     # 解析每行数据
-    for line_num, line in enumerate(lines, 1):
-        ip, port, name = extract_ip_port_name(line)
-        success, msg, timeout = test_ip_connection(ip, port)
-        if success:
-            if ip not in good_ips:
-                good_ips += f'{line}\n'
+    ip, port, name = extract_ip_port_name(line)
+    success, msg, timeout = test_ip_connection(ip, port)
+    bad_ip = None  # 每次循环初始化，避免残留上一次的bad_ip
+     
+    if success:
+        if ip not in bad_ips:
+            ip_in_v4 = any(item.get("ip") == ip for item in good_ipv4s_list)
+            ip_in_v6 = any(item.get("ip") == ip for item in good_ipv6s_list)
+            if not ip_in_v4 and not ip_in_v6:  # 确保IP未在v4/v6列表中，避免重复添加
                 if ':' in ip:
-                    ipv6_list.append({"ip": ip, "port": port, "name": name, 'timeout': timeout})
+                    good_ipv6s_list.append({"ip": ip, "port": port, "name": name, "timeout": timeout})
                 else:
-                    ipv4_list.append({"ip": ip, "port": port, "name": name, 'timeout': timeout})
-            else:
-                print(f'{ip}重复，已丢弃')
+                    good_ipv4s_list.append({"ip": ip, "port": port, "name": name, "timeout": timeout})
         else:
-            bad_ips += f'{line}\n'
-            print(f'{ip}:{port}：{msg}')
-            
-ip_dict = {'ipv4': ipv4_list, 'ipv6': ipv6_list}
+            print(f'{ip}重复或损坏，已记录至bad_ips')
+            bad_ip = ip
+    else:
+        bad_ip = ip
+        if bad_ip not in bad_ips:
+            bad_ips.add(bad_ip)
+        print(f"{ip}:{port}：{msg}")
+     
+    if bad_ip:
+        target_list = good_ipv6s_list if ':' in bad_ip else good_ipv4s_list
+        for item in target_list:
+            if item.get("ip") == bad_ip:
+                target_list.remove(item)
+                break  # 仅删除第一个匹配项
+
+good_ips_dict = {'ipv4': good_ipv4s_list, 'ipv6': good_ipv6s_list}
 
 # 2. 保存为JSON文件（确保无论是否有数据都生成文件）
 try:
-    with open('good_ips', 'w', encoding='utf-8') as f:
-        f.write(good_ips)
     with open('bad_ips', 'w', encoding='utf-8') as f:
-        f.write(bad_ips)
+        bad_ips_str = "\n".join(bad_ips)
+        f.write(bad_ips_str)
     with open('docs/ip_info.json', 'w', encoding='utf-8') as f:
         json.dump(ip_dict, f, indent=2, ensure_ascii=False)
     print(f"JSON文件生成成功！路径：{os.path.abspath('ip_info.json')}，有效数据条数：{len(ip_list)}")
