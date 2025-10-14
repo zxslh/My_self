@@ -78,7 +78,7 @@ else:
             else:
                 ipv4_list.append({"ip": ip, "port": port, "name": name, 'timeout': timeout})
         else:
-            print(f'{ip}:{port)：{msg}')
+            print(f'{ip}:{port}：{msg}')
             
 ip_dict = {'ipv4': ipv4_list, 'ipv6': ipv6_list}
 
