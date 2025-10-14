@@ -50,6 +50,12 @@ def extract_ip_port_name(s):
 ip_list = []
 allips_path = 'allips'
 bad_ips_path = 'bad_ips'
+with open(bad_ips_path, 'r', encoding='utf-8') as f:
+    bad_ips = set(line.split('#')[0].split(':')[0].strip() for line in f if line.strip())
+with open('docs/ip_info.json', 'r', encoding='utf-8') as f:
+    good_ips_dict = json.load(f)
+good_ipv4s_list = good_ips_dict['ipv4']
+good_ipv6s_list = good_ips_dict['ipv6']
 # 检查goodips文件是否存在
 if not os.path.exists(allips_path):
     print(f"错误：未找到{allips_path}文件，路径：{os.path.abspath(allips_path)}")
@@ -61,14 +67,6 @@ except Exception as e:
     print(f"读取{allips_path}文件失败！错误原因：{str(e)}")
     exit(1)
 
-ipv4_list = []
-ipv6_list = []
-with open(bad_ips_path, 'r', encoding='utf-8') as f:
-    bad_ips = set(line.split('#')[0].split(':')[0].strip() for line in f if line.strip())
-with open('docs/ip_info.json', 'r', encoding='utf-8') as f:
-    good_ips_dict = json.load(f)
-good_ipv4s_list = good_ips_dict['ipv4']
-good_ipv6s_list = good_ips_dict['ipv6']
 # 检查allips文件是否为空
 if not lines:
     print(f"警告：{allips_path}文件为空，生成空JSON")
