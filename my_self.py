@@ -25,10 +25,13 @@ def get_ips():
             ip_matches = re.findall(ip_pattern, response, re.IGNORECASE)
             unique_ips.update(ip_matches)
         except Exception as e:
-            print(f"❌ 失败: {str(e)}")
-    with open('badips', 'r', encoding='utf-8') as file:
-        for badip in file:
-            unique_ips.discard(badip.rstrip())
+            print(f"❌ 获取失败: {str(e)}")
+    try:
+        with open('badips', 'r', encoding='utf-8') as file:
+            for badip in file:
+                unique_ips.discard(badip.rstrip())
+    except Exception as e:
+            print(f"❌ 读取失败: {str(e)}")
     unique_ips_num = len(unique_ips)
     print(f'可用IP数量：{unique_ips_num}')
 
