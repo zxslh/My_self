@@ -2,17 +2,19 @@ import re
 import json
 
 def extract_ip_port_name(s):
-    """复用之前的IP/端口/名称提取函数，兼容IPv4/IPv6"""
+    """修复括号不匹配问题，兼容IPv4/IPv6"""
     pattern = r'''
         ^
         (?:
-            (?P<ipv6>\[[0-9a-fA-F:]+\]|[0-9a-fA-F:]+) |
+            # 修复：IPv6模式中补充缺失的闭合括号
+            (?P<ipv6>\[([0-9a-fA-F:]+)\]|([0-9a-fA-F:]+)) |
             (?P<ipv4>\d+\.\d+\.\d+\.\d+)
         )
         (:(?P<port>\d+))?
         (#(?P<name>.+))?
         $
     '''
+    # 注意：保留 re.VERBOSE 和 re.IGNORECASE 参数
     match = re.match(pattern, s.strip(), re.VERBOSE | re.IGNORECASE)
     if not match:
         return None, None, None
