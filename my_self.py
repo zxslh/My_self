@@ -6,6 +6,7 @@ import random
 
 def get_ips():
     global unique_ips
+    global unique_ips_num
     update_list = [
         'https://ip.164746.xyz',
         'https://ipdb.api.030101.xyz/?type=bestcf&country=true',
@@ -28,6 +29,8 @@ def get_ips():
     with open('badips', 'r', encoding='utf-8') as file:
         for badip in file:
             unique_ips.discard(badip.rstrip())
+    unique_ips_num = len(unique_ips)
+    print(f'可用IP数量：{unique_ips_num}')
 
 def update_A(host, host_domain, host_token, worker, worker_token):
 
@@ -80,12 +83,9 @@ def update_A(host, host_domain, host_token, worker, worker_token):
         except Exception as e:
             print(f"❌ {domain} 获取domain记录信息失败：{str(e)}")
             continue
-        while sub_name < 51:
-            try:
-                current_ip = unique_ips.pop()
-            except Exception as e:
-                print(f"❌ CFIP地址不够")
-                return
+        while sub_name < min(51, unique_ips_num):
+            
+            current_ip = unique_ips.pop()
 
             record_data = {
                 r_name: f'{sub_name:02d}',
