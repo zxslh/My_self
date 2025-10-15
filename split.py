@@ -47,7 +47,6 @@ def extract_ip_port_name(s):
     return ip, port, match.group('name')
 
 # 1. 读取文件并解析
-ip_list = []
 allips_path = 'allips'
 bad_ips_path = 'bad_ips'
 json_path = 'docs/ip_info.json'
