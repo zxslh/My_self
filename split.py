@@ -70,7 +70,7 @@ try:
     with open(allips_path, 'r', encoding='utf-8') as f:
         lines = [line.strip() for line in f if line.strip()]  # 过滤空行
 except Exception as e:
-    print(f"读取{bad_ips_path}、{json_path}或{allips_path}文件失败！错误原因：{str(e)}")
+    print(f"读取{allips_path}文件失败！错误原因：{str(e)}")
     exit(1)
 
 # 检查allips文件是否为空
