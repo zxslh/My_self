@@ -78,32 +78,26 @@ for line_num, line in enumerate(lines, 1):
     if not ip:
         print(f"{allips_path}文件第{line_num}行不包含ip地址")
         break
-    success, msg, timeout = test_ip_connection(ip, port)
-    bad_ip = None  # 每次循环初始化，避免残留上一次的bad_ip
+    if ip not in bad_ips_set:
+        success, msg, timeout = test_ip_connection(ip, port)
+    else:
+        msg = f'在bad_ips记录中，不可用'
+        success = False
          
     if success:
-        if ip not in bad_ips_set:
-            ip_in_v4 = any(item.get("ip") == ip for item in good_ipv4s_list)
-            ip_in_v6 = any(item.get("ip") == ip for item in good_ipv6s_list)
-            if not ip_in_v4 and not ip_in_v6:  # 确保IP未在v4/v6列表中，避免重复添加
-                if ':' in ip:
-                    good_ipv6s_list.append({"ip": ip, "port": port, "name": name, "timeout": timeout})
-                else:
-                    good_ipv4s_list.append({"ip": ip, "port": port, "name": name, "timeout": timeout})
-        else:
-            print(f'{ip}在bad_ips记录中，不可用')
-            bad_ip = ip
+        ip_in_v4 = any(item.get("ip") == ip for item in good_ipv4s_list)
+        ip_in_v6 = any(item.get("ip") == ip for item in good_ipv6s_list)
+        if not ip_in_v4 and not ip_in_v6:  # 确保IP未在v4/v6列表中，避免重复添加
+            if ':' in ip:
+                good_ipv6s_list.append({"ip": ip, "port": port, "name": name, "timeout": timeout})
+            else:
+                good_ipv4s_list.append({"ip": ip, "port": port, "name": name, "timeout": timeout})
     else:
-        bad_ip = ip
-        if bad_ip not in bad_ips_set:
-            bad_ips_set.add(bad_ip)
         print(f"{ip}:{port}：{msg}")
-         
-    if bad_ip:
-        # 去除ip_info.json中不可用ip
-        target_list = good_ipv6s_list if ':' in bad_ip else good_ipv4s_list
+        bad_ips_set.add(ip)
+        target_list = good_ipv6s_list if ':' in ip else good_ipv4s_list
         for item in target_list:
-            if item.get("ip") == bad_ip:
+            if item.get("ip") == ip:
                 target_list.remove(item)
                 break  # 仅删除第一个匹配项
 
