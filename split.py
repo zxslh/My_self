@@ -59,11 +59,11 @@ except Exception as e:
     exit(1)
 try:
     with open(bad_ips_path, 'r', encoding='utf-8') as f:
-        bad_ips = set(line.split('#')[0].split(':')[0].strip() for line in f if line.strip())
+        bad_ips_set = set(line.split('#')[0].split(':')[0].strip() for line in f if line.strip())
 except Exception as e:
-    bad_ips = set()
+    bad_ips_set = set()
 finally:
-    bad_ips_num = len(bad_ips)
+    bad_ips_num = len(bad_ips_set)
 try:
     with open(json_path, 'r', encoding='utf-8') as f:
         good_ips_dict = json.load(f)
@@ -82,7 +82,7 @@ for line_num, line in enumerate(lines, 1):
     bad_ip = None  # 每次循环初始化，避免残留上一次的bad_ip
          
     if success:
-        if ip not in bad_ips:
+        if ip not in bad_ips_set:
             ip_in_v4 = any(item.get("ip") == ip for item in good_ipv4s_list)
             ip_in_v6 = any(item.get("ip") == ip for item in good_ipv6s_list)
             if not ip_in_v4 and not ip_in_v6:  # 确保IP未在v4/v6列表中，避免重复添加
@@ -95,8 +95,8 @@ for line_num, line in enumerate(lines, 1):
             bad_ip = ip
     else:
         bad_ip = ip
-        if bad_ip not in bad_ips:
-            bad_ips.add(bad_ip)
+        if bad_ip not in bad_ips_set:
+            bad_ips_set.add(bad_ip)
         print(f"{ip}:{port}：{msg}")
          
     if bad_ip:
@@ -111,9 +111,9 @@ good_ips_dict = {'ipv4': good_ipv4s_list, 'ipv6': good_ipv6s_list}
 
 try:
     with open(bad_ips_path, 'w', encoding='utf-8') as f:
-        bad_ips_str = "\n".join(bad_ips)
+        bad_ips_str = "\n".join(bad_ips_set)
         f.write(bad_ips_str)
-    print(f"修正bad_ips文件成功！新增{len(bad_ips)-bad_ips_num}条")
+    print(f"修正bad_ips文件成功！新增{len(bad_ips_set)-bad_ips_num}条")
     with open(json_path, 'w', encoding='utf-8') as f:
         json.dump(good_ips_dict, f, indent=2, ensure_ascii=False)
     print(f"JSON文件生成成功！路径：{json_path}，有效数据条数：{len(good_ips_dict)}")
