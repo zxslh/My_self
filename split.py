@@ -59,7 +59,7 @@ except Exception as e:
     exit(1)
 try:
     with open(bad_ips_path, 'r', encoding='utf-8') as f:
-        bad_ips_set = set(line.split('#')[0].split(':')[0].strip() for line in f if line.strip())
+        bad_ips_set = set(line.strip() for line in f if line.strip())
 except Exception as e:
     bad_ips_set = set()
 finally:
@@ -107,7 +107,7 @@ try:
     with open(bad_ips_path, 'w', encoding='utf-8') as f:
         bad_ips_str = "\n".join(bad_ips_set)
         f.write(bad_ips_str)
-    print(f"修正bad_ips文件成功！新增{len(bad_ips_set)-bad_ips_num}条")
+    print(f"修正bad_ips文件成功！原有条目：{bad_ips_num}；新增{len(bad_ips_set)-bad_ips_num}条")
     with open(json_path, 'w', encoding='utf-8') as f:
         json.dump(good_ips_dict, f, indent=2, ensure_ascii=False)
     print(f"JSON文件生成成功！路径：{json_path}，ipv4数据：{len(good_ipv4s_list)}；ipv6数据：{len(good_ipv6s_list)}")
