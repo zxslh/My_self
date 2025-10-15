@@ -113,7 +113,7 @@ try:
     with open(bad_ips_path, 'w', encoding='utf-8') as f:
         bad_ips_str = "\n".join(bad_ips)
         f.write(bad_ips_str)
-    print(f"修正bad_ips文件成功！新增{bad_ips_num-len(bad_ips)}条")
+    print(f"修正bad_ips文件成功！新增{len(bad_ips)-bad_ips_num}条")
     with open(json_path, 'w', encoding='utf-8') as f:
         json.dump(good_ips_dict, f, indent=2, ensure_ascii=False)
     print(f"JSON文件生成成功！路径：{json_path}，有效数据条数：{len(good_ips_dict)}")
