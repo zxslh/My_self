@@ -116,7 +116,7 @@ try:
     print(f"修正bad_ips文件成功！新增{len(bad_ips_set)-bad_ips_num}条")
     with open(json_path, 'w', encoding='utf-8') as f:
         json.dump(good_ips_dict, f, indent=2, ensure_ascii=False)
-    print(f"JSON文件生成成功！路径：{json_path}，有效数据条数：{len(good_ips_dict)}")
+    print(f"JSON文件生成成功！路径：{json_path}，ipv4数据：{len(good_ipv4s_list)}；ipv6数据：{len(good_ipv6s_list)}")
 except Exception as e:
     print(f"生成文件失败！错误原因：{str(e)}")
     exit(1)
