@@ -50,21 +50,27 @@ def extract_ip_port_name(s):
 ip_list = []
 allips_path = 'allips'
 bad_ips_path = 'bad_ips'
-with open(bad_ips_path, 'r', encoding='utf-8') as f:
-    bad_ips = set(line.split('#')[0].split(':')[0].strip() for line in f if line.strip())
-with open('docs/ip_info.json', 'r', encoding='utf-8') as f:
-    good_ips_dict = json.load(f)
-good_ipv4s_list = good_ips_dict['ipv4']
-good_ipv6s_list = good_ips_dict['ipv6']
-# 检查goodips文件是否存在
-if not os.path.exists(allips_path):
-    print(f"错误：未找到{allips_path}文件，路径：{os.path.abspath(allips_path)}")
-    exit(1)
+json_path = 'docs/ip_info.json'
+try:
+    with open(bad_ips_path, 'r', encoding='utf-8') as f:
+        bad_ips = set(line.split('#')[0].split(':')[0].strip() for line in f if line.strip())
+except Exception as e:
+    bad_ips = set()
+finally:
+    bad_ips_num = len(bad_ips)
+try:
+    with open(json_path, 'r', encoding='utf-8') as f:
+        good_ips_dict = json.load(f)
+except Exception as e:
+    good_ips_dict = {'ipv4': [], 'ipv6': []}
+finally:
+    good_ipv4s_list = good_ips_dict['ipv4']
+    good_ipv6s_list = good_ips_dict['ipv6']
 try:
     with open(allips_path, 'r', encoding='utf-8') as f:
         lines = [line.strip() for line in f if line.strip()]  # 过滤空行
 except Exception as e:
-    print(f"读取{allips_path}文件失败！错误原因：{str(e)}")
+    print(f"读取{bad_ips_path}、{json_path}或{allips_path}文件失败！错误原因：{str(e)}")
     exit(1)
 
 # 检查allips文件是否为空
@@ -109,6 +115,7 @@ try:
     with open('bad_ips', 'w', encoding='utf-8') as f:
         bad_ips_str = "\n".join(bad_ips)
         f.write(bad_ips_str)
+    print(f"修正bad_ips文件成功！新增{bad_ips_num-len(bad_ips)}条"
     with open('docs/ip_info.json', 'w', encoding='utf-8') as f:
         json.dump(good_ips_dict, f, indent=2, ensure_ascii=False)
     print(f"JSON文件生成成功！路径：{os.path.abspath('ip_info.json')}，有效数据条数：{len(good_ips_dict)}")
